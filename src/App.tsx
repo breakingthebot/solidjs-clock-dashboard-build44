@@ -7,6 +7,7 @@ import { Component, createSignal, For, createMemo } from 'solid-js';
 import { createLiveClockSignal, getDefaultClocks, ClockCardItem, getFormattedTimeForTimezone } from './services/clockStore';
 import { ClockCard } from './components/ClockCard';
 import { AddClockModal } from './components/AddClockModal';
+import { WorldMapVisualizer } from './components/WorldMapVisualizer';
 
 export const App: Component = () => {
   // Fine-grained reactive signal ticking every 1000ms
@@ -15,6 +16,7 @@ export const App: Component = () => {
   // Active clock list signal
   const [clocks, setClocks] = createSignal<ClockCardItem[]>(getDefaultClocks());
   const [isAddModalOpen, setIsAddModalOpen] = createSignal(false);
+  const [isMapVisible, setIsMapVisible] = createSignal(true);
 
   // Master UTC time string computed reactively
   const masterUtcTime = createMemo(() => 
@@ -68,6 +70,13 @@ export const App: Component = () => {
         </div>
 
         <div class="header-stats">
+          <button 
+            type="button" 
+            onclick={() => setIsMapVisible(!isMapVisible())} 
+            class="btn btn-secondary"
+          >
+            🗺️ {isMapVisible() ? 'Hide Map' : 'Show Map'}
+          </button>
           <div class="stat-pill">
             Active Clocks: <strong>{clocks().length}</strong>
           </div>
@@ -103,6 +112,13 @@ export const App: Component = () => {
           </button>
         </div>
       </section>
+
+      {/* World Map & Solar Terminator Visualizer */}
+      {isMapVisible() && (
+        <WorldMapVisualizer currentTime={now()} clocks={clocks()} />
+      )}
+
+      {/* Timezone Clocks Grid */}
 
       {/* Timezone Clocks Grid */}
       <section class="clocks-grid">
