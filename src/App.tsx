@@ -8,6 +8,7 @@ import { createLiveClockSignal, getDefaultClocks, ClockCardItem, getFormattedTim
 import { ClockCard } from './components/ClockCard';
 import { AddClockModal } from './components/AddClockModal';
 import { WorldMapVisualizer } from './components/WorldMapVisualizer';
+import { MeetingSchedulerModal } from './components/MeetingSchedulerModal';
 
 export const App: Component = () => {
   // Fine-grained reactive signal ticking every 1000ms
@@ -16,6 +17,7 @@ export const App: Component = () => {
   // Active clock list signal
   const [clocks, setClocks] = createSignal<ClockCardItem[]>(getDefaultClocks());
   const [isAddModalOpen, setIsAddModalOpen] = createSignal(false);
+  const [isSchedulerOpen, setIsSchedulerOpen] = createSignal(false);
   const [isMapVisible, setIsMapVisible] = createSignal(true);
 
   // Master UTC time string computed reactively
@@ -26,6 +28,8 @@ export const App: Component = () => {
   const masterLocalTime = createMemo(() => 
     getFormattedTimeForTimezone(now(), Intl.DateTimeFormat().resolvedOptions().timeZone, false, true).formattedTime
   );
+
+  const activeTimezones = createMemo(() => clocks().map(c => c.timezone));
 
   // Pinned vs Unpinned sorted clock list
   const sortedClocks = createMemo(() => {
@@ -70,6 +74,14 @@ export const App: Component = () => {
         </div>
 
         <div class="header-stats">
+          <button 
+            type="button" 
+            onclick={() => setIsSchedulerOpen(true)} 
+            class="btn btn-secondary"
+            title="Calculate overlapping meeting working hours across active timezones"
+          >
+            📅 Meeting Planner
+          </button>
           <button 
             type="button" 
             onclick={() => setIsMapVisible(!isMapVisible())} 
@@ -119,8 +131,6 @@ export const App: Component = () => {
       )}
 
       {/* Timezone Clocks Grid */}
-
-      {/* Timezone Clocks Grid */}
       <section class="clocks-grid">
         <For each={sortedClocks()}>
           {(clock) => (
@@ -140,6 +150,13 @@ export const App: Component = () => {
         isOpen={isAddModalOpen()}
         onClose={() => setIsAddModalOpen(false)}
         onAddClock={handleAddClock}
+      />
+
+      {/* Multi-Timezone Meeting Scheduler Modal */}
+      <MeetingSchedulerModal
+        isOpen={isSchedulerOpen()}
+        onClose={() => setIsSchedulerOpen(false)}
+        timezones={activeTimezones()}
       />
     </main>
   );

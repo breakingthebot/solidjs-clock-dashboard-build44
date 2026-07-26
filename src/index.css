@@ -565,3 +565,160 @@ body {
   color: var(--text-primary);
 }
 
+/* Meeting Scheduler UI Styles */
+.scheduler-modal-card {
+  max-width: 720px;
+}
+
+.scheduler-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.scheduler-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.golden-badge {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-emerald);
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 4px 12px;
+  border-radius: 14px;
+}
+
+.legend-info {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.timeline-matrix {
+  max-height: 280px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.timeline-slot-row {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.timeline-slot-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.timeline-slot-row.golden {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.timeline-slot-row.possible {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.2);
+}
+
+.timeline-slot-row.selected {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+}
+
+.utc-time-col {
+  width: 110px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.participants-col {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  flex-grow: 1;
+}
+
+.participant-pill {
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.participant-pill.working {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: var(--accent-emerald);
+  color: #a7f3d0;
+}
+
+.participant-pill.extended {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: var(--accent-amber);
+  color: #fef08a;
+}
+
+.participant-pill.sleeping {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-muted);
+}
+
+.selected-slot-card {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-left: 4px solid var(--accent-cyan);
+}
+
+.slot-details-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slot-details-head h3 {
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.slot-participants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.slot-participant-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.slot-participant-row .local-val {
+  font-family: var(--font-mono);
+  color: var(--accent-cyan);
+}
+
+
