@@ -486,12 +486,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .map-title-group {
   display: flex;
   align-items: center;
   gap: 14px;
+  flex-wrap: wrap;
 }
 
 .map-title-group h2 {
@@ -510,13 +513,44 @@ body {
   border-radius: 12px;
 }
 
+.map-legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.legend-dot.day {
+  background: var(--accent-amber);
+  box-shadow: 0 0 6px var(--accent-amber);
+}
+
+.legend-dot.night {
+  background: #38bdf8;
+  box-shadow: 0 0 6px #38bdf8;
+}
+
 .map-container {
   position: relative;
   width: 100%;
   border-radius: var(--radius-md);
   overflow: hidden;
-  background: rgba(2, 6, 23, 0.8);
+  background: #030712;
   border: 1px solid var(--border-color);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .world-map-svg {
@@ -530,8 +564,17 @@ body {
 }
 
 @keyframes sunGlow {
-  0%, 100% { r: 12; opacity: 0.3; }
-  50% { r: 18; opacity: 0.6; }
+  0%, 100% { r: 14; opacity: 0.2; }
+  50% { r: 22; opacity: 0.5; }
+}
+
+.pin-pulse {
+  animation: pinGlow 1.5s infinite ease-in-out;
+}
+
+@keyframes pinGlow {
+  0%, 100% { r: 7; opacity: 0.2; }
+  50% { r: 12; opacity: 0.5; }
 }
 
 .map-pin-group {
@@ -540,29 +583,49 @@ body {
 }
 
 .map-pin-group:hover {
-  transform: scale(1.2);
+  transform: scale(1.25);
 }
 
 .map-tooltip {
   position: absolute;
-  transform: translate(-50%, -120%);
-  padding: 6px 10px;
+  transform: translate(-50%, -125%);
+  padding: 8px 12px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
   pointer-events: none;
-  z-index: 10;
+  z-index: 20;
   font-size: 11px;
   white-space: nowrap;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid var(--accent-cyan);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
-.map-tooltip strong {
-  color: var(--accent-cyan);
+.tooltip-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.map-tooltip span {
+.tooltip-head strong {
+  color: #f8fafc;
+  font-size: 12px;
+}
+
+.status-tag {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+}
+
+.tooltip-time {
   font-family: var(--font-mono);
-  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-cyan);
 }
 
 /* Meeting Scheduler UI Styles */
