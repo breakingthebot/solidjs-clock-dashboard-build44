@@ -20,6 +20,7 @@ import { WatchFaceSkin, getSkinConfig } from './services/themeStore';
 import { checkHourlyChimeTrigger, playWebAudioChime } from './services/chimeService';
 import { DashboardVaultData } from './services/vaultBackupService';
 import { handleGlobalKeyDown } from './services/hotkeyService';
+import { DEFAULT_WORKSPACES, filterClocksByWorkspace } from './services/workspaceService';
 
 export const App: Component = () => {
   // Fine-grained reactive signal ticking every 1000ms
@@ -28,6 +29,7 @@ export const App: Component = () => {
   // Active clock list signal
   const [clocks, setClocks] = createSignal<ClockCardItem[]>(getDefaultClocks());
   const [activeSkin, setActiveSkin] = createSignal<WatchFaceSkin>('cyberpunk');
+  const [activeWorkspace, setActiveWorkspace] = createSignal('all');
   const [isAddModalOpen, setIsAddModalOpen] = createSignal(false);
   const [isSchedulerOpen, setIsSchedulerOpen] = createSignal(false);
   const [isConverterOpen, setIsConverterOpen] = createSignal(false);
@@ -134,7 +136,8 @@ export const App: Component = () => {
 
   // Pinned vs Unpinned sorted clock list
   const sortedClocks = createMemo(() => {
-    return [...clocks()].sort((a, b) => {
+    const filtered = filterClocksByWorkspace(clocks(), activeWorkspace());
+    return [...filtered].sort((a, b) => {
       if (a.isPinned && !b.isPinned) return -1;
       if (!a.isPinned && b.isPinned) return 1;
       return 0;
@@ -299,6 +302,26 @@ export const App: Component = () => {
           </button>
         </div>
       </section>
+
+      {/* Workspace Tabs Navigation Bar */}
+      <nav class="workspace-tabs">
+        <For each={DEFAULT_WORKSPACES}>
+          {(ws) => {
+            const count = createMemo(() => filterClocksByWorkspace(clocks(), ws.id).length);
+            return (
+              <button
+                type="button"
+                class="workspace-tab-btn"
+                classList={{ active: activeWorkspace() === ws.id }}
+                onclick={() => setActiveWorkspace(ws.id)}
+              >
+                <span>{ws.icon} {ws.label}</span>
+                <span class="tab-count">{count()}</span>
+              </button>
+            );
+          }}
+        </For>
+      </nav>
 
       {/* Timers & Stopwatch Widget */}
       <Show when={isTimersVisible()}>

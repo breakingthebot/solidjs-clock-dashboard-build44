@@ -618,7 +618,56 @@ Created `src/services/weatherService.ts` and `src/services/weatherService.spec.t
    * *Interview answer*: "I added sticky notes and annotations to global timezone cards."
 
 ## Chosen Next Iteration
+Option 1: Timezone Grouping & Multi-Tab Workspace Vault (Iteration 14).
+
+---
+
+# Build Notes - Build 44 Iteration 14 (2026-07-26)
+
+Implemented Timezone Grouping & Multi-Tab Workspace Vault.
+
+## Summary
+Created `src/services/workspaceService.ts` and `src/services/workspaceService.spec.ts` supporting workspace category tab definitions (`DEFAULT_WORKSPACES`: `All Clocks`, `Americas`, `EMEA`, `APAC`) and reactive timezone clock list filtering (`filterClocksByWorkspace`). Rendered workspace tab bar navigation (`nav.workspace-tabs`) with real-time clock count pills in `src/App.tsx`. Added CSS styling for active tab highlights and glow effects in `src/index.css`.
+
+## File-by-File Explanation
+- `src/services/workspaceService.ts`: Timezone workspace categorization engine filtering clocks into regional team tabs.
+- `src/services/workspaceService.spec.ts`: Unit test suite testing workspace tab definitions and category keyword matching.
+- `src/App.tsx`: Added `activeWorkspace` signal, tab bar navigation, and filtered clock list grid binding.
+- `src/index.css`: Added CSS styles for multi-tab workspace bar, tab buttons, active glow states, and count pills.
+- `CHANGELOG.md`: Logged version 1.4.0 release notes.
+
+## Manual Test Steps
+1. Open [https://solidjs-clock-dashboard-build44.vercel.app](https://solidjs-clock-dashboard-build44.vercel.app).
+2. Click the **🌎 Americas** tab to isolate American timezones (New York, Chicago, Los Angeles).
+3. Click the **🌍 EMEA** tab to view European/Middle Eastern timezones (UTC, London, Paris, Dubai).
+4. Click the **🌏 APAC** tab to view Asia-Pacific timezones (Tokyo, Singapore, Sydney)!
+5. Click **🌐 All Clocks** to return to your master clock workspace.
+
+## Candidate Next Iterations
+1. **Historical Timezone DST Change Timeline & Policy Audit (Iteration 15)**
+   * *Plain English*: View past and upcoming daylight saving time (DST) shifts for active timezones.
+   * *Benefit*: Avoid unexpected 1-hour schedule shifts.
+   * *Interview answer*: "I built a daylight saving time (DST) shift predictor engine."
+2. **iCal / Google Calendar Overlap Export Engine (Iteration 15)**
+   * *Plain English*: Generate downloadable `.ics` calendar invitation files for multi-timezone meetings.
+   * *Benefit*: Seamless calendar scheduling integration.
+   * *Interview answer*: "I built an iCal event invitation generator for timezone meeting slots."
+3. **Timezone Audio Pronunciation & Local Language Voice Synthesizer (Iteration 15)**
+   * *Plain English*: Listen to native language time greetings (e.g., "Ohayo gozaimasu" for Tokyo).
+   * *Benefit*: Cultural awareness and engagement.
+   * *Interview answer*: "I added local language audio voice synthesizers for global timezones."
+4. **Timezone Clock Note Annotations & Team Reminders (Iteration 15)**
+   * *Plain English*: Attach custom notes and reminders directly onto individual clock cards.
+   * *Benefit*: Contextual notes per team location.
+   * *Interview answer*: "I added sticky notes and annotations to global timezone cards."
+5. **Timezone Difference Calculator & Matrix Matrix Grid (Iteration 15)**
+   * *Plain English*: View hour difference matrix table between all active timezone pairs.
+   * *Benefit*: Instant relative hour lookup table across team locations.
+   * *Interview answer*: "I built a pairwise timezone time difference matrix."
+
+## Chosen Next Iteration
 *None selected yet.*
+
 
 
 

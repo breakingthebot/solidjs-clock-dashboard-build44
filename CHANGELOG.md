@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-07-26
+
+### Added
+- Integrated **Timezone Grouping & Multi-Tab Workspace Vault** in `src/services/workspaceService.ts`, `src/App.tsx`, and `src/index.css`.
+- Added workspace category tab filter engine (`filterClocksByWorkspace`) supporting `🌐 All Clocks`, `🌎 Americas`, `🌍 EMEA`, and `🌏 APAC`.
+- Added workspace tabs navigation bar (`nav.workspace-tabs`) with active glow effects and real-time clock count badges.
+- Added unit test suite in `src/services/workspaceService.spec.ts`.
+
 ## [1.3.0] - 2026-07-26
 
 ### Added
