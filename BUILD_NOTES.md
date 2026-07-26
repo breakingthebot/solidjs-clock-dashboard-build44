@@ -188,7 +188,56 @@ Created `src/services/timerStore.ts` and `src/services/timerStore.spec.ts` suppo
    * *Interview answer*: "I built a layout export/import engine for custom timezone configurations."
 
 ## Chosen Next Iteration
+Option 1: Timezone Converter & Date Math Calculator (Iteration 5).
+
+---
+
+# Build Notes - Build 44 Iteration 5 (2026-07-26)
+
+Implemented Timezone Converter & Date Math Calculator.
+
+## Summary
+Created `src/services/timezoneConverterService.ts` and `src/services/timezoneConverterService.spec.ts` supporting instant timestamp conversion across global timezones (`convertTimestamp`), hour offset calculation, and date arithmetic (`addDateOffset`). Built `src/components/TimezoneConverterModal.tsx` modal dialog featuring base datetime input picker, source/target timezone dropdowns with swap button, interactive date math adjuster (+/- days and hours), and 1-click clipboard copy button. Integrated `🔄 Converter` action button in `src/App.tsx`.
+
+## File-by-File Explanation
+- `src/services/timezoneConverterService.ts`: Timestamp converter engine (`convertTimestamp`), timezone offset evaluator, and date offset arithmetic (`addDateOffset`).
+- `src/services/timezoneConverterService.spec.ts`: Unit test suite testing timezone conversion accuracy, offset calculation, and date math.
+- `src/components/TimezoneConverterModal.tsx`: Interactive modal dialog rendering datetime picker, timezone selectors with swap action, quick date arithmetic adjuster, formatted conversion result card, and clipboard copy action.
+- `src/App.tsx`: Added `🔄 Converter` top header button and embedded `TimezoneConverterModal`.
+- `CHANGELOG.md`: Logged version 0.5.0 release notes.
+
+## Manual Test Steps
+1. Open [https://solidjs-clock-dashboard-build44.vercel.app](https://solidjs-clock-dashboard-build44.vercel.app).
+2. Click **🔄 Converter** in top navigation header bar.
+3. Select Source Timezone (e.g. `UTC`) and Target Timezone (e.g. `America/New_York`).
+4. Click **+** or **-** on the Date Arithmetic Adjuster to offset days or hours (+2 days, +5 hours).
+5. Click **📋 Copy Conversion** to copy the formatted conversion text to clipboard!
+
+## Candidate Next Iterations
+1. **Custom Themes & Analog Watch Face Skin Selector (Iteration 6)**
+   * *Plain English*: Customize clock face styles (Minimalist, Cyberpunk Neon, Classic Quartz, Digital Matrix).
+   * *Benefit*: Personalized aesthetic choices for dashboard users.
+   * *Interview answer*: "I built a skin engine supporting multiple analog watch face styles."
+2. **PWA Offline Support & Desktop Widget Mode (Iteration 6)**
+   * *Plain English*: Add Web App Manifest and Service Worker for offline PWA installation and floating clock widget views.
+   * *Benefit*: Standalone app installation on desktop and mobile.
+   * *Interview answer*: "I turned the Solid.js clock dashboard into an installable PWA app package."
+3. **Audio Chime & Hourly Bell Notification Engine (Iteration 6)**
+   * *Plain English*: Play subtle Web Audio chimes on top of the hour or per-timezone alarms.
+   * *Benefit*: Auditory time awareness for global team members.
+   * *Interview answer*: "I added Web Audio API chimes and timezone alarm notifications."
+4. **CSV/JSON Timezone Configuration Vault Backup Engine (Iteration 6)**
+   * *Plain English*: Export and import custom timezone clock layouts and timer settings as JSON or CSV configuration files.
+   * *Benefit*: Portable timezone dashboard configurations across devices.
+   * *Interview answer*: "I built a layout export/import engine for custom timezone configurations."
+5. **Solar & Lunar Phase Celestial Event Calculator (Iteration 6)**
+   * *Plain English*: View sunrise, sunset, dusk, dawn, and moon phase illumination cycles per timezone.
+   * *Benefit*: Comprehensive celestial time tracking for photography, astronomy, and travel planning.
+   * *Interview answer*: "I added a solar and lunar phase calculator engine into the clock dashboard."
+
+## Chosen Next Iteration
 *None selected yet.*
+
 
 
 

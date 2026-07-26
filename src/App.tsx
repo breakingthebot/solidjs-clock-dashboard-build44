@@ -9,6 +9,7 @@ import { ClockCard } from './components/ClockCard';
 import { AddClockModal } from './components/AddClockModal';
 import { MeetingSchedulerModal } from './components/MeetingSchedulerModal';
 import { TimersWidget } from './components/TimersWidget';
+import { TimezoneConverterModal } from './components/TimezoneConverterModal';
 
 export const App: Component = () => {
   // Fine-grained reactive signal ticking every 1000ms
@@ -18,6 +19,7 @@ export const App: Component = () => {
   const [clocks, setClocks] = createSignal<ClockCardItem[]>(getDefaultClocks());
   const [isAddModalOpen, setIsAddModalOpen] = createSignal(false);
   const [isSchedulerOpen, setIsSchedulerOpen] = createSignal(false);
+  const [isConverterOpen, setIsConverterOpen] = createSignal(false);
   const [isTimersVisible, setIsTimersVisible] = createSignal(true);
 
   // Master UTC time string computed reactively
@@ -74,6 +76,14 @@ export const App: Component = () => {
         </div>
 
         <div class="header-stats">
+          <button 
+            type="button" 
+            onclick={() => setIsConverterOpen(true)} 
+            class="btn btn-secondary"
+            title="Convert past or future timestamps between timezones"
+          >
+            🔄 Converter
+          </button>
           <button 
             type="button" 
             onclick={() => setIsTimersVisible(!isTimersVisible())} 
@@ -157,6 +167,12 @@ export const App: Component = () => {
         isOpen={isSchedulerOpen()}
         onClose={() => setIsSchedulerOpen(false)}
         timezones={activeTimezones()}
+      />
+
+      {/* Timezone Converter & Date Math Modal */}
+      <TimezoneConverterModal
+        isOpen={isConverterOpen()}
+        onClose={() => setIsConverterOpen(false)}
       />
     </main>
   );

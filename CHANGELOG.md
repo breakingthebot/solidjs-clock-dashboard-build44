@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2026-07-26
+
+### Added
+- Integrated **Timezone Converter & Date Math Calculator** in `src/services/timezoneConverterService.ts`, `src/components/TimezoneConverterModal.tsx`, and `src/App.tsx`.
+- Added timestamp conversion engine (`convertTimestamp`) with timezone offset calculation.
+- Added date arithmetic helper (`addDateOffset`) for +/- days and hours adjustments.
+- Added interactive modal dialog with source/target timezone dropdowns, swap button, and 1-click clipboard copy button.
+- Added `🔄 Converter` top header action button.
+- Added unit test suite in `src/services/timezoneConverterService.spec.ts`.
+
 ## [0.4.0] - 2026-07-26
 
 ### Added
