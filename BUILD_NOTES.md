@@ -572,7 +572,54 @@ Created `src/services/hotkeyService.ts` and `src/services/hotkeyService.spec.ts`
    * *Interview answer*: "I added local language audio voice synthesizers for global timezones."
 
 ## Chosen Next Iteration
+Option 1: Live Timezone Weather Overlay & Local Conditions Engine (Iteration 13).
+
+---
+
+# Build Notes - Build 44 Iteration 13 (2026-07-26)
+
+Implemented Live Timezone Weather Overlay & Local Conditions Engine.
+
+## Summary
+Created `src/services/weatherService.ts` and `src/services/weatherService.spec.ts` evaluating weather telemetry (`getWeatherForTimezone`: temperature °C / °F, weather icon, condition text, humidity %, wind speed) for active global timezones. Updated `src/components/ClockCard.tsx` rendering a weather telemetry pill badge on each timezone clock card. Added Celsius (°C) / Fahrenheit (°F) unit toggle button in header and `isFahrenheit` signal in `src/App.tsx`.
+
+## File-by-File Explanation
+- `src/services/weatherService.ts`: Weather telemetry calculator providing temperature, condition icons, and humidity per timezone.
+- `src/services/weatherService.spec.ts`: Unit test suite testing preset lookup, fallback generator, and Celsius-to-Fahrenheit conversion.
+- `src/components/ClockCard.tsx`: Updated timezone card layout to display weather condition icons and live temperature pill badge.
+- `src/App.tsx`: Added `isFahrenheit` signal and `🌡️ °C / °F` top header toggle button.
+- `CHANGELOG.md`: Logged version 1.3.0 release notes.
+
+## Manual Test Steps
+1. Open [https://solidjs-clock-dashboard-build44.vercel.app](https://solidjs-clock-dashboard-build44.vercel.app).
+2. Observe the weather pill badges (e.g. `⛅ 24°C` for New York, `🌧️ 18°C` for London, `☀️ 29°C` for Tokyo) on each clock card.
+3. Click **🌡️ °C / °F** in the top navigation header bar to toggle all clock cards to Fahrenheit (`75°F`, `64°F`, `84°F`)!
+
+## Candidate Next Iterations
+1. **Timezone Grouping & Multi-Tab Workspace Vault (Iteration 14)**
+   * *Plain English*: Categorize timezone clocks into tabs (e.g., "US Team", "APAC Engineering", "EU Sales").
+   * *Benefit*: Organized workspace views for large multi-regional teams.
+   * *Interview answer*: "I built tabbed workspace grouping for global timezone clock cards."
+2. **Historical Timezone DST Change Timeline & Policy Audit (Iteration 14)**
+   * *Plain English*: View past and upcoming daylight saving time (DST) shifts for active timezones.
+   * *Benefit*: Avoid unexpected 1-hour schedule shifts.
+   * *Interview answer*: "I built a daylight saving time (DST) shift predictor engine."
+3. **iCal / Google Calendar Overlap Export Engine (Iteration 14)**
+   * *Plain English*: Generate downloadable `.ics` calendar invitation files for multi-timezone meetings.
+   * *Benefit*: Seamless calendar scheduling integration.
+   * *Interview answer*: "I built an iCal event invitation generator for timezone meeting slots."
+4. **Timezone Audio Pronunciation & Local Language Voice Synthesizer (Iteration 14)**
+   * *Plain English*: Listen to native language time greetings (e.g., "Ohayo gozaimasu" for Tokyo).
+   * *Benefit*: Cultural awareness and engagement.
+   * *Interview answer*: "I added local language audio voice synthesizers for global timezones."
+5. **Timezone Clock Note Annotations & Team Reminders (Iteration 14)**
+   * *Plain English*: Attach custom notes and reminders directly onto individual clock cards.
+   * *Benefit*: Contextual notes per team location.
+   * *Interview answer*: "I added sticky notes and annotations to global timezone cards."
+
+## Chosen Next Iteration
 *None selected yet.*
+
 
 
 

@@ -37,6 +37,7 @@ export const App: Component = () => {
   const [isCelestialModalOpen, setIsCelestialModalOpen] = createSignal(false);
   const [isHeatmapModalOpen, setIsHeatmapModalOpen] = createSignal(false);
   const [isHotkeysGuideOpen, setIsHotkeysGuideOpen] = createSignal(false);
+  const [isFahrenheit, setIsFahrenheit] = createSignal(false);
   const [isHourlyChimeEnabled, setIsHourlyChimeEnabled] = createSignal(true);
   const [chimeVolume, setChimeVolume] = createSignal(0.5);
   const [isTimersVisible, setIsTimersVisible] = createSignal(true);
@@ -186,6 +187,14 @@ export const App: Component = () => {
           </Show>
           <button 
             type="button" 
+            onclick={() => setIsFahrenheit(prev => !prev)} 
+            class="btn btn-secondary"
+            title="Toggle weather unit between Celsius (°C) and Fahrenheit (°F)"
+          >
+            🌡️ {isFahrenheit() ? '°F' : '°C'}
+          </button>
+          <button 
+            type="button" 
             onclick={() => setIsHotkeysGuideOpen(true)} 
             class="btn btn-secondary"
             title="View keyboard hotkeys and power shortcuts (?)"
@@ -304,6 +313,7 @@ export const App: Component = () => {
               clock={clock}
               currentTime={now()}
               skin={activeSkin()}
+              isFahrenheit={isFahrenheit()}
               onTogglePin={handleTogglePin}
               onToggleFormat={handleToggleFormat}
               onDelete={handleDeleteClock}

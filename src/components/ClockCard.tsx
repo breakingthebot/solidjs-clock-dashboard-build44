@@ -7,11 +7,13 @@ import { Component, createMemo } from 'solid-js';
 import { ClockCardItem, getFormattedTimeForTimezone } from '../services/clockStore';
 import { AnalogClock } from './AnalogClock';
 import { getSkinConfig, WatchFaceSkin } from '../services/themeStore';
+import { getWeatherForTimezone } from '../services/weatherService';
 
 interface ClockCardProps {
   clock: ClockCardItem;
   currentTime: Date;
   skin?: WatchFaceSkin;
+  isFahrenheit?: boolean;
   onTogglePin: (id: string) => void;
   onToggleFormat: (id: string) => void;
   onDelete: (id: string) => void;
@@ -19,6 +21,7 @@ interface ClockCardProps {
 
 export const ClockCard: Component<ClockCardProps> = (props) => {
   const skin = createMemo(() => getSkinConfig(props.skin || 'cyberpunk'));
+  const weather = createMemo(() => getWeatherForTimezone(props.clock.timezone));
 
   // Fine-grained reactivity: Only compute time metrics when currentTime updates
   const timeData = createMemo(() => 
@@ -99,6 +102,9 @@ export const ClockCard: Component<ClockCardProps> = (props) => {
               {timeData().offsetHours === 0 
                 ? 'Same as local' 
                 : `${timeData().offsetHours > 0 ? '+' : ''}${timeData().offsetHours} hrs`}
+            </span>
+            <span class="weather-badge" title={`${weather().conditionText} • ${weather().humidityPct}% humidity`}>
+              {weather().conditionIcon} {props.isFahrenheit ? `${weather().tempF}°F` : `${weather().tempC}°C`}
             </span>
           </div>
         </div>

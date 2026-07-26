@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-07-26
+
+### Added
+- Integrated **Live Timezone Weather Overlay & Local Conditions Engine** in `src/services/weatherService.ts`, `src/components/ClockCard.tsx`, and `src/App.tsx`.
+- Added weather telemetry evaluator (`getWeatherForTimezone`) providing temperature, condition icons (☀️, ⛅, 🌧️, 🌙, 🌩️, 🔥), condition description, and humidity %.
+- Added weather pill badge on all timezone clock cards.
+- Added `🌡️ °C / °F` temperature unit toggle button in header navigation bar.
+- Added unit test suite in `src/services/weatherService.spec.ts`.
+
 ## [1.2.0] - 2026-07-26
 
 ### Added
