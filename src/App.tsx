@@ -3,7 +3,7 @@
 // Connects to: src/services/clockStore.ts, src/components/ClockCard.tsx, src/components/AddClockModal.tsx
 // Created: 2026-07-26
 
-import { Component, createSignal, For, createMemo, Show, onMount } from 'solid-js';
+import { Component, createSignal, For, createMemo, Show, onMount, createEffect } from 'solid-js';
 import { createLiveClockSignal, getDefaultClocks, ClockCardItem, getFormattedTimeForTimezone } from './services/clockStore';
 import { ClockCard } from './components/ClockCard';
 import { AddClockModal } from './components/AddClockModal';
@@ -11,7 +11,9 @@ import { MeetingSchedulerModal } from './components/MeetingSchedulerModal';
 import { TimersWidget } from './components/TimersWidget';
 import { TimezoneConverterModal } from './components/TimezoneConverterModal';
 import { SkinSelectorModal } from './components/SkinSelectorModal';
+import { ChimeSettingsModal } from './components/ChimeSettingsModal';
 import { WatchFaceSkin } from './services/themeStore';
+import { checkHourlyChimeTrigger, playWebAudioChime } from './services/chimeService';
 
 export const App: Component = () => {
   // Fine-grained reactive signal ticking every 1000ms
@@ -24,14 +26,30 @@ export const App: Component = () => {
   const [isSchedulerOpen, setIsSchedulerOpen] = createSignal(false);
   const [isConverterOpen, setIsConverterOpen] = createSignal(false);
   const [isSkinModalOpen, setIsSkinModalOpen] = createSignal(false);
+  const [isChimeModalOpen, setIsChimeModalOpen] = createSignal(false);
+  const [isHourlyChimeEnabled, setIsHourlyChimeEnabled] = createSignal(true);
+  const [chimeVolume, setChimeVolume] = createSignal(0.5);
   const [isTimersVisible, setIsTimersVisible] = createSignal(true);
   const [deferredInstallPrompt, setDeferredInstallPrompt] = createSignal<any>(null);
+
+  let lastMinute = -1;
 
   onMount(() => {
     window.addEventListener('beforeinstallprompt', (e: Event) => {
       e.preventDefault();
       setDeferredInstallPrompt(e);
     });
+  });
+
+  // Track minute transitions for top-of-the-hour chime
+  createEffect(() => {
+    const currentMin = now().getMinutes();
+    if (lastMinute !== -1 && checkHourlyChimeTrigger(lastMinute, currentMin)) {
+      if (isHourlyChimeEnabled()) {
+        playWebAudioChime('hourly', chimeVolume());
+      }
+    }
+    lastMinute = currentMin;
   });
 
   const handleInstallApp = () => {
@@ -108,6 +126,14 @@ export const App: Component = () => {
               📱 Install App
             </button>
           </Show>
+          <button 
+            type="button" 
+            onclick={() => setIsChimeModalOpen(true)} 
+            class="btn btn-secondary"
+            title="Configure hourly bell chime and audio alerts"
+          >
+            🔔 {isHourlyChimeEnabled() ? 'Sound On' : 'Muted'}
+          </button>
           <button 
             type="button" 
             onclick={() => setIsSkinModalOpen(true)} 
@@ -222,6 +248,16 @@ export const App: Component = () => {
         onClose={() => setIsSkinModalOpen(false)}
         activeSkin={activeSkin()}
         onSelectSkin={setActiveSkin}
+      />
+
+      {/* Audio Chime & Hourly Bell Settings Modal */}
+      <ChimeSettingsModal
+        isOpen={isChimeModalOpen()}
+        onClose={() => setIsChimeModalOpen(false)}
+        isEnabled={isHourlyChimeEnabled()}
+        onToggleEnabled={() => setIsHourlyChimeEnabled(e => !e)}
+        volume={chimeVolume()}
+        onVolumeChange={setChimeVolume}
       />
     </main>
   );

@@ -335,7 +335,56 @@ Created `public/manifest.json`, `public/sw.js`, `src/services/pwaService.ts`, an
    * *Interview answer*: "I added a comprehensive hotkey navigation engine for power users."
 
 ## Chosen Next Iteration
+Option 1: Audio Chime & Hourly Bell Notification Engine (Iteration 8).
+
+---
+
+# Build Notes - Build 44 Iteration 8 (2026-07-26)
+
+Implemented Audio Chime & Hourly Bell Notification Engine.
+
+## Summary
+Created `src/services/chimeService.ts` and `src/services/chimeService.spec.ts` supporting Web Audio API glass bell chime synthesis (`playWebAudioChime`) and top-of-the-hour minute transition detection (`checkHourlyChimeTrigger`). Built `src/components/ChimeSettingsModal.tsx` modal dialog featuring top-of-hour bell chime toggle (`🔔 Sound On / Muted`), volume slider control, and interactive audio preview test buttons (`🔔 Test Hourly Chime`, `🚨 Test Alarm Ring`). Integrated `createEffect` tracking minute transitions and top header `🔔 Sound` button in `src/App.tsx`.
+
+## File-by-File Explanation
+- `src/services/chimeService.ts`: Web Audio API sound synthesizer engine creating two-tone glass chimes and triad alarm rings without external audio file dependencies.
+- `src/services/chimeService.spec.ts`: Unit test suite testing minute transition detection and Web Audio API oscillator synthesis call handling.
+- `src/components/ChimeSettingsModal.tsx`: Interactive modal dialog rendering chime enable checkbox, volume slider, and audio test trigger buttons.
+- `src/App.tsx`: Added minute change listener effect and header `🔔 Sound` button toggling `ChimeSettingsModal`.
+- `CHANGELOG.md`: Logged version 0.8.0 release notes.
+
+## Manual Test Steps
+1. Open [https://solidjs-clock-dashboard-build44.vercel.app](https://solidjs-clock-dashboard-build44.vercel.app).
+2. Click **🔔 Sound On** in the top navigation header bar.
+3. Click **🔔 Test Hourly Chime** to hear the crystal glass chime synthesizer.
+4. Click **🚨 Test Alarm Ring** to hear the tri-tone major triad alarm ring.
+5. Adjust the Volume slider to test volume scaling!
+
+## Candidate Next Iterations
+1. **CSV/JSON Timezone Configuration Vault Backup Engine (Iteration 9)**
+   * *Plain English*: Export and import custom timezone clock layouts and timer settings as JSON or CSV configuration files.
+   * *Benefit*: Portable timezone dashboard configurations across devices.
+   * *Interview answer*: "I built a layout export/import engine for custom timezone configurations."
+2. **Solar & Lunar Phase Celestial Event Calculator (Iteration 9)**
+   * *Plain English*: View sunrise, sunset, dusk, dawn, and moon phase illumination cycles per timezone.
+   * *Benefit*: Comprehensive celestial time tracking for photography, astronomy, and travel planning.
+   * *Interview answer*: "I added a solar and lunar phase calculator engine into the clock dashboard."
+3. **Global Timezone Heatmap & Activity Tracker (Iteration 9)**
+   * *Plain English*: View active business overlap hours on an interactive color-coded team activity heatmap.
+   * *Benefit*: Team scheduling optimization for global distributed organizations.
+   * *Interview answer*: "I built a global timezone activity heatmap for distributed teams."
+4. **Keyboard Hotkeys & Fast Navigation Engine (Iteration 9)**
+   * *Plain English*: Press ? for hotkeys modal, Ctrl+K for timezone launcher, Ctrl+A to add clock.
+   * *Benefit*: Power-user keyboard navigation.
+   * *Interview answer*: "I added a comprehensive hotkey navigation engine for power users."
+5. **Live Timezone Weather Overlay & Local Conditions Engine (Iteration 9)**
+   * *Plain English*: Display real-time temperature, humidity, and weather icons on each timezone clock card.
+   * *Benefit*: Environmental context alongside local time.
+   * *Interview answer*: "I integrated live weather telemetry onto global timezone cards."
+
+## Chosen Next Iteration
 *None selected yet.*
+
 
 
 

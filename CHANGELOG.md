@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 2026-07-26
+
+### Added
+- Integrated **Audio Chime & Hourly Bell Notification Engine** in `src/services/chimeService.ts`, `src/components/ChimeSettingsModal.tsx`, and `src/App.tsx`.
+- Added Web Audio API synthesizer (`playWebAudioChime`) for crystal glass hourly chimes and tri-tone alarm rings.
+- Added top-of-the-hour minute transition detection (`checkHourlyChimeTrigger`).
+- Added `🔔 Sound On / Muted` top header action button.
+- Added `ChimeSettingsModal` with volume slider control and audio preview test buttons.
+- Added unit test suite in `src/services/chimeService.spec.ts`.
+
 ## [0.7.0] - 2026-07-26
 
 ### Added
