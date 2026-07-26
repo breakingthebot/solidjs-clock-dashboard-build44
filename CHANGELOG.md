@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2026-07-26
+
+### Added
+- Integrated **Solar & Lunar Phase Celestial Event Calculator** in `src/services/celestialService.ts`, `src/components/CelestialEventsModal.tsx`, and `src/App.tsx`.
+- Added solar event calculator (`calculateCelestialEvents`) evaluating sunrise, sunset, solar noon, dawn, dusk, and golden hour.
+- Added lunar phase calculator (`getMoonPhase`) returning synodic phase name, moon icon, and illumination percentage.
+- Added `☀️ Celestial` top header action button.
+- Added city location presets (New York, London, Tokyo, Sydney, Paris, Dubai).
+- Added unit test suite in `src/services/celestialService.spec.ts`.
+
 ## [0.9.0] - 2026-07-26
 
 ### Added

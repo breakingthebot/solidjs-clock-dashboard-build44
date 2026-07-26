@@ -430,7 +430,56 @@ Created `src/services/vaultBackupService.ts` and `src/services/vaultBackupServic
    * *Interview answer*: "I built tabbed workspace grouping for global timezone clock cards."
 
 ## Chosen Next Iteration
+Option 1: Solar & Lunar Phase Celestial Event Calculator (Iteration 10).
+
+---
+
+# Build Notes - Build 44 Iteration 10 (2026-07-26)
+
+Implemented Solar & Lunar Phase Celestial Event Calculator (v1.0.0 Milestone Release).
+
+## Summary
+Created `src/services/celestialService.ts` and `src/services/celestialService.spec.ts` calculating solar event times (`calculateCelestialEvents`: sunrise, sunset, solar noon, dawn, dusk, golden hour) and moon phase illumination (`getMoonPhase`: illumination percentage and phase icon). Built `src/components/CelestialEventsModal.tsx` modal dialog featuring city location presets (New York, London, Tokyo, Sydney, Paris, Dubai), solar timeline grid, and lunar phase illumination card. Integrated `☀️ Celestial` header button in `src/App.tsx`.
+
+## File-by-File Explanation
+- `src/services/celestialService.ts`: Solar event evaluator and moon phase illumination calculator based on synodic lunar cycles.
+- `src/services/celestialService.spec.ts`: Unit test suite testing solar event output formatting and moon phase illumination range bounds.
+- `src/components/CelestialEventsModal.tsx`: Interactive modal dialog rendering location selector buttons, solar times grid (sunrise, sunset, dusk, dawn, golden hour), and lunar phase card.
+- `src/App.tsx`: Added `☀️ Celestial` top header button and embedded `CelestialEventsModal`.
+- `CHANGELOG.md`: Logged version 1.0.0 release notes.
+
+## Manual Test Steps
+1. Open [https://solidjs-clock-dashboard-build44.vercel.app](https://solidjs-clock-dashboard-build44.vercel.app).
+2. Click **☀️ Celestial** in the top navigation header bar.
+3. Select a city location preset (e.g. `🗽 New York`, `🇬🇧 London`, `🇯🇵 Tokyo`, `🇦🇺 Sydney`).
+4. Observe the solar event times update (Sunrise, Sunset, Dawn, Dusk, Golden Hour, Solar Noon).
+5. View current Moon Phase (e.g., `🌕 Full Moon 100%` or `🌓 First Quarter 50%`)!
+
+## Candidate Next Iterations
+1. **Global Timezone Heatmap & Activity Tracker (Iteration 11)**
+   * *Plain English*: View active business overlap hours on an interactive color-coded team activity heatmap.
+   * *Benefit*: Team scheduling optimization for global distributed organizations.
+   * *Interview answer*: "I built a global timezone activity heatmap for distributed teams."
+2. **Keyboard Hotkeys & Fast Navigation Engine (Iteration 11)**
+   * *Plain English*: Press ? for hotkeys modal, Ctrl+K for timezone launcher, Ctrl+A to add clock.
+   * *Benefit*: Power-user keyboard navigation.
+   * *Interview answer*: "I added a comprehensive hotkey navigation engine for power users."
+3. **Live Timezone Weather Overlay & Local Conditions Engine (Iteration 11)**
+   * *Plain English*: Display real-time temperature, humidity, and weather icons on each timezone clock card.
+   * *Benefit*: Environmental context alongside local time.
+   * *Interview answer*: "I integrated live weather telemetry onto global timezone cards."
+4. **Timezone Grouping & Multi-Tab Workspace Vault (Iteration 11)**
+   * *Plain English*: Categorize timezone clocks into tabs (e.g., "US Team", "APAC Engineering", "EU Sales").
+   * *Benefit*: Organized workspace views for large multi-regional teams.
+   * *Interview answer*: "I built tabbed workspace grouping for global timezone clock cards."
+5. **Historical Timezone DST Change Timeline & Policy Audit (Iteration 11)**
+   * *Plain English*: View past and upcoming daylight saving time (DST) shifts for active timezones.
+   * *Benefit*: Avoid unexpected 1-hour schedule shifts.
+   * *Interview answer*: "I built a daylight saving time (DST) shift predictor engine."
+
+## Chosen Next Iteration
 *None selected yet.*
+
 
 
 
