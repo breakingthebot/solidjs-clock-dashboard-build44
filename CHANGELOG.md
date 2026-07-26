@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.0] - 2026-07-26
+
+### Added
+- Integrated **CSV/JSON Timezone Configuration Vault Backup Engine** in `src/services/vaultBackupService.ts`, `src/components/VaultBackupModal.tsx`, and `src/App.tsx`.
+- Added JSON vault exporter (`exportToJson`) saving full dashboard configuration (clocks, skin, audio settings, volume).
+- Added CSV clock exporter (`exportToCsv`) formatting clock list to spreadsheet format.
+- Added JSON vault import validator (`parseImportJson`) supporting file upload and text paste.
+- Added `💾 Backup Vault` top header action button.
+- Added unit test suite in `src/services/vaultBackupService.spec.ts`.
+
 ## [0.8.0] - 2026-07-26
 
 ### Added

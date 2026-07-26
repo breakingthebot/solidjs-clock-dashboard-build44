@@ -383,7 +383,55 @@ Created `src/services/chimeService.ts` and `src/services/chimeService.spec.ts` s
    * *Interview answer*: "I integrated live weather telemetry onto global timezone cards."
 
 ## Chosen Next Iteration
+Option 1: CSV/JSON Timezone Configuration Vault Backup Engine (Iteration 9).
+
+---
+
+# Build Notes - Build 44 Iteration 9 (2026-07-26)
+
+Implemented CSV/JSON Timezone Configuration Vault Backup Engine.
+
+## Summary
+Created `src/services/vaultBackupService.ts` and `src/services/vaultBackupService.spec.ts` supporting JSON layout export (`exportToJson`), CSV clock list generation (`exportToCsv`), and JSON configuration import validation (`parseImportJson`). Built `src/components/VaultBackupModal.tsx` modal dialog featuring 1-click JSON file download, CSV spreadsheet export, clipboard JSON copy, and file upload / text paste configuration restoration. Integrated `💾 Backup Vault` header button and `handleImportVault` layout loader in `src/App.tsx`.
+
+## File-by-File Explanation
+- `src/services/vaultBackupService.ts`: Vault backup serializer exporting dashboard state (clocks, skin, chime settings, volume) to formatted JSON/CSV strings and validating import structures.
+- `src/services/vaultBackupService.spec.ts`: Unit test suite testing JSON serialization, CSV clock formatting, valid import parsing, and invalid JSON error throwing.
+- `src/components/VaultBackupModal.tsx`: Interactive modal dialog rendering JSON/CSV download actions, file upload input, text paste area, and error banners.
+- `src/App.tsx`: Added `💾 Backup Vault` top header button and embedded `VaultBackupModal`.
+- `CHANGELOG.md`: Logged version 0.9.0 release notes.
+
+## Manual Test Steps
+1. Open [https://solidjs-clock-dashboard-build44.vercel.app](https://solidjs-clock-dashboard-build44.vercel.app).
+2. Click **💾 Backup Vault** in the top navigation header bar.
+3. Click **📄 Download JSON Vault** or **📊 Export CSV Clocks** to save your configuration locally.
+4. Click **📄 Download JSON Vault**, make modifications (e.g. remove a clock), and click **Upload JSON File** to restore your customized dashboard layout!
+
+## Candidate Next Iterations
+1. **Solar & Lunar Phase Celestial Event Calculator (Iteration 10)**
+   * *Plain English*: View sunrise, sunset, dusk, dawn, and moon phase illumination cycles per timezone.
+   * *Benefit*: Comprehensive celestial time tracking for photography, astronomy, and travel planning.
+   * *Interview answer*: "I added a solar and lunar phase calculator engine into the clock dashboard."
+2. **Global Timezone Heatmap & Activity Tracker (Iteration 10)**
+   * *Plain English*: View active business overlap hours on an interactive color-coded team activity heatmap.
+   * *Benefit*: Team scheduling optimization for global distributed organizations.
+   * *Interview answer*: "I built a global timezone activity heatmap for distributed teams."
+3. **Keyboard Hotkeys & Fast Navigation Engine (Iteration 10)**
+   * *Plain English*: Press ? for hotkeys modal, Ctrl+K for timezone launcher, Ctrl+A to add clock.
+   * *Benefit*: Power-user keyboard navigation.
+   * *Interview answer*: "I added a comprehensive hotkey navigation engine for power users."
+4. **Live Timezone Weather Overlay & Local Conditions Engine (Iteration 10)**
+   * *Plain English*: Display real-time temperature, humidity, and weather icons on each timezone clock card.
+   * *Benefit*: Environmental context alongside local time.
+   * *Interview answer*: "I integrated live weather telemetry onto global timezone cards."
+5. **Timezone Grouping & Multi-Tab Workspace Vault (Iteration 10)**
+   * *Plain English*: Categorize timezone clocks into tabs (e.g., "US Team", "APAC Engineering", "EU Sales").
+   * *Benefit*: Organized workspace views for large multi-regional teams.
+   * *Interview answer*: "I built tabbed workspace grouping for global timezone clock cards."
+
+## Chosen Next Iteration
 *None selected yet.*
+
 
 
 

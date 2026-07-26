@@ -12,8 +12,10 @@ import { TimersWidget } from './components/TimersWidget';
 import { TimezoneConverterModal } from './components/TimezoneConverterModal';
 import { SkinSelectorModal } from './components/SkinSelectorModal';
 import { ChimeSettingsModal } from './components/ChimeSettingsModal';
+import { VaultBackupModal } from './components/VaultBackupModal';
 import { WatchFaceSkin, getSkinConfig } from './services/themeStore';
 import { checkHourlyChimeTrigger, playWebAudioChime } from './services/chimeService';
+import { DashboardVaultData } from './services/vaultBackupService';
 
 export const App: Component = () => {
   // Fine-grained reactive signal ticking every 1000ms
@@ -27,6 +29,7 @@ export const App: Component = () => {
   const [isConverterOpen, setIsConverterOpen] = createSignal(false);
   const [isSkinModalOpen, setIsSkinModalOpen] = createSignal(false);
   const [isChimeModalOpen, setIsChimeModalOpen] = createSignal(false);
+  const [isVaultModalOpen, setIsVaultModalOpen] = createSignal(false);
   const [isHourlyChimeEnabled, setIsHourlyChimeEnabled] = createSignal(true);
   const [chimeVolume, setChimeVolume] = createSignal(0.5);
   const [isTimersVisible, setIsTimersVisible] = createSignal(true);
@@ -67,6 +70,19 @@ export const App: Component = () => {
       promptEvent.userChoice.then(() => {
         setDeferredInstallPrompt(null);
       });
+    }
+  };
+
+  const handleImportVault = (vaultData: DashboardVaultData) => {
+    if (vaultData.clocks && vaultData.clocks.length > 0) {
+      setClocks(vaultData.clocks);
+    }
+    if (vaultData.activeSkin) {
+      setActiveSkin(vaultData.activeSkin);
+    }
+    setIsHourlyChimeEnabled(vaultData.isHourlyChimeEnabled);
+    if (typeof vaultData.chimeVolume === 'number') {
+      setChimeVolume(vaultData.chimeVolume);
     }
   };
 
@@ -134,6 +150,14 @@ export const App: Component = () => {
               📱 Install App
             </button>
           </Show>
+          <button 
+            type="button" 
+            onclick={() => setIsVaultModalOpen(true)} 
+            class="btn btn-secondary"
+            title="Backup, export, or restore dashboard configuration vault"
+          >
+            💾 Backup Vault
+          </button>
           <button 
             type="button" 
             onclick={() => setIsChimeModalOpen(true)} 
@@ -266,6 +290,17 @@ export const App: Component = () => {
         onToggleEnabled={() => setIsHourlyChimeEnabled(e => !e)}
         volume={chimeVolume()}
         onVolumeChange={setChimeVolume}
+      />
+
+      {/* Vault Backup & Import/Export Modal */}
+      <VaultBackupModal
+        isOpen={isVaultModalOpen()}
+        onClose={() => setIsVaultModalOpen(false)}
+        clocks={clocks()}
+        activeSkin={activeSkin()}
+        isHourlyChimeEnabled={isHourlyChimeEnabled()}
+        chimeVolume={chimeVolume()}
+        onImportVault={handleImportVault}
       />
     </main>
   );
