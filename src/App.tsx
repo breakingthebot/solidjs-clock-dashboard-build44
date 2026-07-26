@@ -3,7 +3,7 @@
 // Connects to: src/services/clockStore.ts, src/components/ClockCard.tsx, src/components/AddClockModal.tsx
 // Created: 2026-07-26
 
-import { Component, createSignal, For, createMemo, Show } from 'solid-js';
+import { Component, createSignal, For, createMemo, Show, onMount } from 'solid-js';
 import { createLiveClockSignal, getDefaultClocks, ClockCardItem, getFormattedTimeForTimezone } from './services/clockStore';
 import { ClockCard } from './components/ClockCard';
 import { AddClockModal } from './components/AddClockModal';
@@ -25,6 +25,24 @@ export const App: Component = () => {
   const [isConverterOpen, setIsConverterOpen] = createSignal(false);
   const [isSkinModalOpen, setIsSkinModalOpen] = createSignal(false);
   const [isTimersVisible, setIsTimersVisible] = createSignal(true);
+  const [deferredInstallPrompt, setDeferredInstallPrompt] = createSignal<any>(null);
+
+  onMount(() => {
+    window.addEventListener('beforeinstallprompt', (e: Event) => {
+      e.preventDefault();
+      setDeferredInstallPrompt(e);
+    });
+  });
+
+  const handleInstallApp = () => {
+    const promptEvent = deferredInstallPrompt();
+    if (promptEvent) {
+      promptEvent.prompt();
+      promptEvent.userChoice.then(() => {
+        setDeferredInstallPrompt(null);
+      });
+    }
+  };
 
   // Master UTC time string computed reactively
   const masterUtcTime = createMemo(() => 
@@ -80,6 +98,16 @@ export const App: Component = () => {
         </div>
 
         <div class="header-stats">
+          <Show when={deferredInstallPrompt()}>
+            <button 
+              type="button" 
+              onclick={handleInstallApp} 
+              class="btn btn-primary"
+              title="Install Solid Clock as a standalone PWA application"
+            >
+              📱 Install App
+            </button>
+          </Show>
           <button 
             type="button" 
             onclick={() => setIsSkinModalOpen(true)} 

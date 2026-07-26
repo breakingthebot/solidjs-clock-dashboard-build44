@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2026-07-26
+
+### Added
+- Integrated **PWA Offline Support & Desktop Widget Mode** in `public/manifest.json`, `public/sw.js`, `src/services/pwaService.ts`, `index.html`, and `src/App.tsx`.
+- Added Web App Manifest for standalone desktop and mobile installation.
+- Added Service Worker script (`sw.js`) with Cache-First offline asset strategy.
+- Added `beforeinstallprompt` event listener and `📱 Install App` top header action button.
+- Added unit test suite in `src/services/pwaService.spec.ts`.
+
 ## [0.6.0] - 2026-07-26
 
 ### Added

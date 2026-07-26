@@ -286,7 +286,57 @@ Created `src/services/themeStore.ts` and `src/services/themeStore.spec.ts` suppo
    * *Interview answer*: "I built a global timezone activity heatmap for distributed teams."
 
 ## Chosen Next Iteration
+Option 1: PWA Offline Support & Desktop Widget Mode (Iteration 7).
+
+---
+
+# Build Notes - Build 44 Iteration 7 (2026-07-26)
+
+Implemented PWA Offline Support & Desktop Widget Mode.
+
+## Summary
+Created `public/manifest.json`, `public/sw.js`, `src/services/pwaService.ts`, and `src/services/pwaService.spec.ts` supporting Web App Manifest installation, offline Service Worker asset caching, and standalone PWA display mode. Updated `index.html` with theme color meta tags, manifest link, and Service Worker registration. Added `beforeinstallprompt` event listener and `📱 Install App` header action button in `src/App.tsx`.
+
+## File-by-File Explanation
+- `public/manifest.json`: Web App Manifest defining app name, standalone display mode, theme colors, and icons.
+- `public/sw.js`: Service Worker script handling Cache-First offline asset retrieval.
+- `src/services/pwaService.ts`: PWA status evaluator (`getPwaStatus`) and Service Worker registration helper (`registerServiceWorker`).
+- `src/services/pwaService.spec.ts`: Unit test suite testing PWA support detection and registration handling.
+- `index.html`: Registered manifest link, theme color meta tags, and Service Worker registration script.
+- `src/App.tsx`: Added `beforeinstallprompt` listener and rendered `📱 Install App` button when available.
+- `CHANGELOG.md`: Logged version 0.7.0 release notes.
+
+## Manual Test Steps
+1. Open [https://solidjs-clock-dashboard-build44.vercel.app](https://solidjs-clock-dashboard-build44.vercel.app) in Chrome, Edge, or mobile browser.
+2. In supported browsers, observe the **📱 Install App** button in the top navigation header.
+3. Click **📱 Install App** to trigger native PWA app installation.
+4. Turn off internet connection / enable Offline mode in DevTools to test full offline PWA functionality!
+
+## Candidate Next Iterations
+1. **Audio Chime & Hourly Bell Notification Engine (Iteration 8)**
+   * *Plain English*: Play subtle Web Audio chimes on top of the hour or per-timezone alarms.
+   * *Benefit*: Auditory time awareness for global team members.
+   * *Interview answer*: "I added Web Audio API chimes and timezone alarm notifications."
+2. **CSV/JSON Timezone Configuration Vault Backup Engine (Iteration 8)**
+   * *Plain English*: Export and import custom timezone clock layouts and timer settings as JSON or CSV configuration files.
+   * *Benefit*: Portable timezone dashboard configurations across devices.
+   * *Interview answer*: "I built a layout export/import engine for custom timezone configurations."
+3. **Solar & Lunar Phase Celestial Event Calculator (Iteration 8)**
+   * *Plain English*: View sunrise, sunset, dusk, dawn, and moon phase illumination cycles per timezone.
+   * *Benefit*: Comprehensive celestial time tracking for photography, astronomy, and travel planning.
+   * *Interview answer*: "I added a solar and lunar phase calculator engine into the clock dashboard."
+4. **Global Timezone Heatmap & Activity Tracker (Iteration 8)**
+   * *Plain English*: View active business overlap hours on an interactive color-coded team activity heatmap.
+   * *Benefit*: Team scheduling optimization for global distributed organizations.
+   * *Interview answer*: "I built a global timezone activity heatmap for distributed teams."
+5. **Keyboard Hotkeys & Fast Navigation Engine (Iteration 8)**
+   * *Plain English*: Press ? for hotkeys modal, Ctrl+K for timezone launcher, Ctrl+A to add clock.
+   * *Benefit*: Power-user keyboard navigation.
+   * *Interview answer*: "I added a comprehensive hotkey navigation engine for power users."
+
+## Chosen Next Iteration
 *None selected yet.*
+
 
 
 
