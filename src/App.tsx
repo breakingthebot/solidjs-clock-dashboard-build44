@@ -7,7 +7,6 @@ import { Component, createSignal, For, createMemo, Show } from 'solid-js';
 import { createLiveClockSignal, getDefaultClocks, ClockCardItem, getFormattedTimeForTimezone } from './services/clockStore';
 import { ClockCard } from './components/ClockCard';
 import { AddClockModal } from './components/AddClockModal';
-import { WorldMapVisualizer } from './components/WorldMapVisualizer';
 import { MeetingSchedulerModal } from './components/MeetingSchedulerModal';
 import { TimersWidget } from './components/TimersWidget';
 
@@ -19,7 +18,6 @@ export const App: Component = () => {
   const [clocks, setClocks] = createSignal<ClockCardItem[]>(getDefaultClocks());
   const [isAddModalOpen, setIsAddModalOpen] = createSignal(false);
   const [isSchedulerOpen, setIsSchedulerOpen] = createSignal(false);
-  const [isMapVisible, setIsMapVisible] = createSignal(true);
   const [isTimersVisible, setIsTimersVisible] = createSignal(true);
 
   // Master UTC time string computed reactively
@@ -91,13 +89,6 @@ export const App: Component = () => {
           >
             📅 Meeting Planner
           </button>
-          <button 
-            type="button" 
-            onclick={() => setIsMapVisible(!isMapVisible())} 
-            class="btn btn-secondary"
-          >
-            🗺️ {isMapVisible() ? 'Hide Map' : 'Show Map'}
-          </button>
           <div class="stat-pill">
             Active Clocks: <strong>{clocks().length}</strong>
           </div>
@@ -137,11 +128,6 @@ export const App: Component = () => {
       {/* Timers & Stopwatch Widget */}
       <Show when={isTimersVisible()}>
         <TimersWidget />
-      </Show>
-
-      {/* World Map & Solar Terminator Visualizer */}
-      <Show when={isMapVisible()}>
-        <WorldMapVisualizer currentTime={now()} clocks={clocks()} />
       </Show>
 
       {/* Timezone Clocks Grid */}
