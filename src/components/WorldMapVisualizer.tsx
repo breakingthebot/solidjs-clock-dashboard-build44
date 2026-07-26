@@ -1,5 +1,5 @@
 // src/components/WorldMapVisualizer.tsx
-// High-Precision SVG World Map & Dynamic Solar Terminator Component for Solid.js.
+// High-Resolution World Map & Dynamic Solar Terminator Component for Solid.js.
 // Connects to: src/App.tsx, src/services/sunCalcService.ts, src/services/clockStore.ts
 // Created: 2026-07-26
 
@@ -59,23 +59,17 @@ export const WorldMapVisualizer: Component<WorldMapVisualizerProps> = (props) =>
         </div>
       </div>
 
-      {/* SVG Canvas Container */}
+      {/* SVG Canvas Container with Real High-Res Map Background */}
       <div class="map-container">
         <svg viewBox="0 0 800 400" class="world-map-svg" preserveAspectRatio="xMidYMid meet">
           <defs>
-            {/* Gradients */}
-            <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#091328" />
-              <stop offset="100%" stop-color="#030712" />
-            </linearGradient>
-
             <linearGradient id="nightShadowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="rgba(2, 6, 23, 0.75)" />
-              <stop offset="100%" stop-color="rgba(2, 6, 23, 0.85)" />
+              <stop offset="0%" stop-color="rgba(2, 6, 23, 0.72)" />
+              <stop offset="100%" stop-color="rgba(2, 6, 23, 0.82)" />
             </linearGradient>
 
             <filter id="glow">
-              <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
               <feMerge>
                 <feMergeNode in="coloredBlur"/>
                 <feMergeNode in="SourceGraphic"/>
@@ -83,103 +77,32 @@ export const WorldMapVisualizer: Component<WorldMapVisualizerProps> = (props) =>
             </filter>
           </defs>
 
-          {/* Ocean Background */}
-          <rect width="800" height="400" fill="url(#oceanGrad)" rx="8" />
-
-          {/* Latitude & Longitude Grid Lines */}
-          {/* Equator */}
-          <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(6, 182, 212, 0.25)" stroke-width="1" stroke-dasharray="4 4" />
-          {/* Prime Meridian */}
-          <line x1="400" y1="0" x2="400" y2="400" stroke="rgba(6, 182, 212, 0.25)" stroke-width="1" stroke-dasharray="4 4" />
-          {/* Tropics */}
-          <line x1="0" y1="148" x2="800" y2="148" stroke="rgba(245, 158, 11, 0.15)" stroke-dasharray="2 4" />
-          <line x1="0" y1="252" x2="800" y2="252" stroke="rgba(245, 158, 11, 0.15)" stroke-dasharray="2 4" />
-
-          {/* Detailed Vector World Continent Landmasses */}
-          {/* North America */}
-          <path 
-            d="M 40 50 L 140 30 L 220 35 L 275 80 L 250 140 L 220 150 L 195 180 L 180 200 L 165 170 L 120 180 L 110 145 L 80 135 L 45 100 Z" 
-            fill="rgba(30, 41, 59, 0.85)" 
-            stroke="rgba(56, 189, 248, 0.4)" 
-            stroke-width="1.2" 
+          {/* Real High-Resolution Dark Mode World Map Image */}
+          <image 
+            href="/world_map_dark.jpg" 
+            x="0" 
+            y="0" 
+            width="800" 
+            height="400" 
+            preserveAspectRatio="none" 
+            opacity="0.9"
           />
 
-          {/* South America */}
-          <path 
-            d="M 230 195 L 275 205 L 325 240 L 290 320 L 260 365 L 245 365 L 235 300 L 220 235 Z" 
-            fill="rgba(30, 41, 59, 0.85)" 
-            stroke="rgba(56, 189, 248, 0.4)" 
-            stroke-width="1.2" 
-          />
-
-          {/* Greenland */}
-          <path 
-            d="M 290 20 L 350 15 L 370 45 L 320 60 L 295 40 Z" 
-            fill="rgba(30, 41, 59, 0.7)" 
-            stroke="rgba(56, 189, 248, 0.3)" 
-            stroke-width="1" 
-          />
-
-          {/* Europe */}
-          <path 
-            d="M 380 115 L 400 75 L 435 55 L 465 65 L 485 100 L 460 125 L 415 125 L 390 125 Z" 
-            fill="rgba(30, 41, 59, 0.85)" 
-            stroke="rgba(56, 189, 248, 0.4)" 
-            stroke-width="1.2" 
-          />
-
-          {/* UK & Ireland */}
-          <path 
-            d="M 385 75 L 395 72 L 398 88 L 388 90 Z" 
-            fill="rgba(30, 41, 59, 0.85)" 
-            stroke="rgba(56, 189, 248, 0.4)" 
-            stroke-width="1" 
-          />
-
-          {/* Africa */}
-          <path 
-            d="M 375 130 L 440 125 L 515 175 L 475 250 L 445 300 L 420 300 L 385 200 L 355 165 Z" 
-            fill="rgba(30, 41, 59, 0.85)" 
-            stroke="rgba(56, 189, 248, 0.4)" 
-            stroke-width="1.2" 
-          />
-
-          {/* Asia */}
-          <path 
-            d="M 485 100 L 530 60 L 680 45 L 775 60 L 760 110 L 705 135 L 650 165 L 620 185 L 575 175 L 565 145 L 510 145 Z" 
-            fill="rgba(30, 41, 59, 0.85)" 
-            stroke="rgba(56, 189, 248, 0.4)" 
-            stroke-width="1.2" 
-          />
-
-          {/* Japan */}
-          <path 
-            d="M 705 110 L 715 105 L 718 125 L 708 128 Z" 
-            fill="rgba(30, 41, 59, 0.85)" 
-            stroke="rgba(56, 189, 248, 0.4)" 
-            stroke-width="1" 
-          />
-
-          {/* Australia */}
-          <path 
-            d="M 645 235 L 725 230 L 740 270 L 720 325 L 655 315 L 635 270 Z" 
-            fill="rgba(30, 41, 59, 0.85)" 
-            stroke="rgba(56, 189, 248, 0.4)" 
-            stroke-width="1.2" 
-          />
+          {/* Grid Overlay Lines */}
+          <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(6, 182, 212, 0.2)" stroke-width="1" stroke-dasharray="4 4" />
+          <line x1="400" y1="0" x2="400" y2="400" stroke="rgba(6, 182, 212, 0.2)" stroke-width="1" stroke-dasharray="4 4" />
 
           {/* Dynamic Solar Terminator Night Shadow Overlay */}
           <path 
             d={nightPath()} 
             fill="url(#nightShadowGrad)" 
-            style={{ "mix-blend-mode": "multiply" }}
           />
 
           {/* Subsolar Sun Marker */}
           <g transform={`translate(${subsolarXY().x}, ${subsolarXY().y})`} filter="url(#glow)">
-            <circle r="18" fill="rgba(245, 158, 11, 0.2)" class="sun-pulse" />
-            <circle r="8" fill="#f59e0b" stroke="#fef08a" stroke-width="2" />
-            <text y="-14" text-anchor="middle" fill="#fef08a" font-size="11" font-weight="800">☀️ Subsolar Sun</text>
+            <circle r="16" fill="rgba(245, 158, 11, 0.25)" class="sun-pulse" />
+            <circle r="7" fill="#f59e0b" stroke="#fef08a" stroke-width="2" />
+            <text y="-12" text-anchor="middle" fill="#fef08a" font-size="10" font-weight="800">☀️ Sun</text>
           </g>
 
           {/* City Pin Markers */}
@@ -199,7 +122,7 @@ export const WorldMapVisualizer: Component<WorldMapVisualizerProps> = (props) =>
               >
                 <circle r="9" fill={city.color} opacity="0.3" class="pin-pulse" />
                 <circle r="4" fill={city.isDaytime ? '#f59e0b' : '#38bdf8'} stroke="#ffffff" stroke-width="1.5" />
-                <text y="14" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="600">
+                <text y="14" text-anchor="middle" fill="#f8fafc" font-size="10" font-weight="700">
                   {city.name.split(' ')[0]}
                 </text>
               </g>
