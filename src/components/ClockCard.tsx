@@ -6,10 +6,12 @@
 import { Component, createMemo } from 'solid-js';
 import { ClockCardItem, getFormattedTimeForTimezone } from '../services/clockStore';
 import { AnalogClock } from './AnalogClock';
+import { WatchFaceSkin } from '../services/themeStore';
 
 interface ClockCardProps {
   clock: ClockCardItem;
   currentTime: Date;
+  skin?: WatchFaceSkin;
   onTogglePin: (id: string) => void;
   onToggleFormat: (id: string) => void;
   onDelete: (id: string) => void;
@@ -67,6 +69,7 @@ export const ClockCard: Component<ClockCardProps> = (props) => {
             seconds={timeData().seconds} 
             color={props.clock.color} 
             size={110} 
+            skin={props.skin}
           />
         </div>
 

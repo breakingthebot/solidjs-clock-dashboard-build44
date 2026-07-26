@@ -10,6 +10,8 @@ import { AddClockModal } from './components/AddClockModal';
 import { MeetingSchedulerModal } from './components/MeetingSchedulerModal';
 import { TimersWidget } from './components/TimersWidget';
 import { TimezoneConverterModal } from './components/TimezoneConverterModal';
+import { SkinSelectorModal } from './components/SkinSelectorModal';
+import { WatchFaceSkin } from './services/themeStore';
 
 export const App: Component = () => {
   // Fine-grained reactive signal ticking every 1000ms
@@ -17,9 +19,11 @@ export const App: Component = () => {
 
   // Active clock list signal
   const [clocks, setClocks] = createSignal<ClockCardItem[]>(getDefaultClocks());
+  const [activeSkin, setActiveSkin] = createSignal<WatchFaceSkin>('cyberpunk');
   const [isAddModalOpen, setIsAddModalOpen] = createSignal(false);
   const [isSchedulerOpen, setIsSchedulerOpen] = createSignal(false);
   const [isConverterOpen, setIsConverterOpen] = createSignal(false);
+  const [isSkinModalOpen, setIsSkinModalOpen] = createSignal(false);
   const [isTimersVisible, setIsTimersVisible] = createSignal(true);
 
   // Master UTC time string computed reactively
@@ -76,6 +80,14 @@ export const App: Component = () => {
         </div>
 
         <div class="header-stats">
+          <button 
+            type="button" 
+            onclick={() => setIsSkinModalOpen(true)} 
+            class="btn btn-secondary"
+            title="Change watch face aesthetic theme skin"
+          >
+            🎨 Skins
+          </button>
           <button 
             type="button" 
             onclick={() => setIsConverterOpen(true)} 
@@ -147,6 +159,7 @@ export const App: Component = () => {
             <ClockCard
               clock={clock}
               currentTime={now()}
+              skin={activeSkin()}
               onTogglePin={handleTogglePin}
               onToggleFormat={handleToggleFormat}
               onDelete={handleDeleteClock}
@@ -173,6 +186,14 @@ export const App: Component = () => {
       <TimezoneConverterModal
         isOpen={isConverterOpen()}
         onClose={() => setIsConverterOpen(false)}
+      />
+
+      {/* Watch Face Skin Selector Modal */}
+      <SkinSelectorModal
+        isOpen={isSkinModalOpen()}
+        onClose={() => setIsSkinModalOpen(false)}
+        activeSkin={activeSkin()}
+        onSelectSkin={setActiveSkin}
       />
     </main>
   );

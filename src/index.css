@@ -1046,6 +1046,84 @@ body {
   color: var(--text-muted);
 }
 
+/* Watch Face Skin Selector UI Styles */
+.skin-modal-card {
+  max-width: 680px;
+}
+
+.skin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.skin-option-card {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  border-top-width: 4px;
+  border-top-style: solid;
+  transition: all 0.2s ease;
+}
+
+.skin-option-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.skin-option-card.active {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.3);
+}
+
+.skin-card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skin-icon {
+  font-size: 18px;
+}
+
+.skin-title {
+  font-size: 14px;
+  color: var(--text-primary);
+  flex-grow: 1;
+}
+
+.active-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--accent-cyan);
+  color: #030712;
+}
+
+.skin-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.skin-preview-swatch {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.swatch-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
 
 
 

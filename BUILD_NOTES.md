@@ -236,7 +236,58 @@ Created `src/services/timezoneConverterService.ts` and `src/services/timezoneCon
    * *Interview answer*: "I added a solar and lunar phase calculator engine into the clock dashboard."
 
 ## Chosen Next Iteration
+Option 1: Custom Themes & Analog Watch Face Skin Selector (Iteration 6).
+
+---
+
+# Build Notes - Build 44 Iteration 6 (2026-07-26)
+
+Implemented Custom Themes & Analog Watch Face Skin Selector.
+
+## Summary
+Created `src/services/themeStore.ts` and `src/services/themeStore.spec.ts` supporting 5 distinct watch face theme skins (Cyberpunk Neon, Classic Quartz, Minimalist Clean, Digital Matrix, Royal Amber). Updated `src/components/AnalogClock.tsx` and `src/components/ClockCard.tsx` to dynamically apply hands, face backgrounds, tick indicators, and glowing accents. Built `src/components/SkinSelectorModal.tsx` modal dialog featuring real-time skin previews, description tags, and 1-click selection. Integrated `🎨 Skins` action button in `src/App.tsx`.
+
+## File-by-File Explanation
+- `src/services/themeStore.ts`: Watch face theme skin registry (`WATCH_SKINS`), color swatch definitions, and fallback getter (`getSkinConfig`).
+- `src/services/themeStore.spec.ts`: Unit test suite testing skin registration, style property retrieval, and fallback behavior.
+- `src/components/AnalogClock.tsx`: Updated SVG clock renderer applying dynamic skin colors to hour/minute/second hands, face background, and tick marks.
+- `src/components/ClockCard.tsx`: Passed active skin signal to nested `AnalogClock` components.
+- `src/components/SkinSelectorModal.tsx`: Interactive modal dialog rendering theme skin cards, preview color swatches, active skin badges, and 1-click theme application.
+- `src/App.tsx`: Added `🎨 Skins` header button and embedded `SkinSelectorModal`.
+- `CHANGELOG.md`: Logged version 0.6.0 release notes.
+
+## Manual Test Steps
+1. Open [https://solidjs-clock-dashboard-build44.vercel.app](https://solidjs-clock-dashboard-build44.vercel.app).
+2. Click **🎨 Skins** in top navigation header bar.
+3. Preview available watch face themes (Cyberpunk Neon, Classic Quartz, Minimalist Clean, Digital Matrix, Royal Amber).
+4. Click any skin card to apply it globally across all active timezone clocks.
+5. Observe the hands, face backgrounds, and tick indicators instantly update to match the selected skin!
+
+## Candidate Next Iterations
+1. **PWA Offline Support & Desktop Widget Mode (Iteration 7)**
+   * *Plain English*: Add Web App Manifest and Service Worker for offline PWA installation and floating clock widget views.
+   * *Benefit*: Standalone app installation on desktop and mobile.
+   * *Interview answer*: "I turned the Solid.js clock dashboard into an installable PWA app package."
+2. **Audio Chime & Hourly Bell Notification Engine (Iteration 7)**
+   * *Plain English*: Play subtle Web Audio chimes on top of the hour or per-timezone alarms.
+   * *Benefit*: Auditory time awareness for global team members.
+   * *Interview answer*: "I added Web Audio API chimes and timezone alarm notifications."
+3. **CSV/JSON Timezone Configuration Vault Backup Engine (Iteration 7)**
+   * *Plain English*: Export and import custom timezone clock layouts and timer settings as JSON or CSV configuration files.
+   * *Benefit*: Portable timezone dashboard configurations across devices.
+   * *Interview answer*: "I built a layout export/import engine for custom timezone configurations."
+4. **Solar & Lunar Phase Celestial Event Calculator (Iteration 7)**
+   * *Plain English*: View sunrise, sunset, dusk, dawn, and moon phase illumination cycles per timezone.
+   * *Benefit*: Comprehensive celestial time tracking for photography, astronomy, and travel planning.
+   * *Interview answer*: "I added a solar and lunar phase calculator engine into the clock dashboard."
+5. **Global Timezone Heatmap & Activity Tracker (Iteration 7)**
+   * *Plain English*: View active business overlap hours on an interactive color-coded team activity heatmap.
+   * *Benefit*: Team scheduling optimization for global distributed organizations.
+   * *Interview answer*: "I built a global timezone activity heatmap for distributed teams."
+
+## Chosen Next Iteration
 *None selected yet.*
+
 
 
 

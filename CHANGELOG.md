@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2026-07-26
+
+### Added
+- Integrated **Custom Themes & Watch Face Skin Selector** in `src/services/themeStore.ts`, `src/components/SkinSelectorModal.tsx`, `src/components/AnalogClock.tsx`, `src/components/ClockCard.tsx`, and `src/App.tsx`.
+- Added 5 watch face theme skins: Cyberpunk Neon, Classic Quartz, Minimalist Clean, Digital Matrix, and Royal Amber.
+- Added dynamic skin styling to analog hands, face background, tick marks, and glowing accents.
+- Added `🎨 Skins` top header action button.
+- Added unit test suite in `src/services/themeStore.spec.ts`.
+
 ## [0.5.0] - 2026-07-26
 
 ### Added

@@ -1,9 +1,10 @@
 // src/components/AnalogClock.tsx
-// Analog Clock Component with smooth SVG hands for Solid.js.
-// Connects to: src/components/ClockCard.tsx
+// Analog Clock Component with smooth SVG hands & custom skins for Solid.js.
+// Connects to: src/components/ClockCard.tsx, src/services/themeStore.ts
 // Created: 2026-07-26
 
-import { Component } from 'solid-js';
+import { Component, createMemo } from 'solid-js';
+import { getSkinConfig, WatchFaceSkin } from '../services/themeStore';
 
 interface AnalogClockProps {
   hours: number;
@@ -11,12 +12,14 @@ interface AnalogClockProps {
   seconds: number;
   color?: string;
   size?: number;
+  skin?: WatchFaceSkin;
 }
 
 export const AnalogClock: Component<AnalogClockProps> = (props) => {
   const size = () => props.size || 120;
   const radius = () => size() / 2;
-  const color = () => props.color || '#06b6d4';
+  const skin = createMemo(() => getSkinConfig(props.skin || 'cyberpunk'));
+  const color = () => props.color || skin().accent;
 
   const secondAngle = () => (props.seconds / 60) * 360;
   const minuteAngle = () => ((props.minutes + props.seconds / 60) / 60) * 360;
@@ -30,7 +33,7 @@ export const AnalogClock: Component<AnalogClockProps> = (props) => {
           cx={radius()} 
           cy={radius()} 
           r={radius() - 4} 
-          fill="rgba(15, 23, 42, 0.6)" 
+          fill={skin().faceBg} 
           stroke={color()} 
           stroke-width="2" 
         />
@@ -42,7 +45,7 @@ export const AnalogClock: Component<AnalogClockProps> = (props) => {
             y1={radius() - (radius() - 12) * Math.cos((angle * Math.PI) / 180)}
             x2={radius() + (radius() - 6) * Math.sin((angle * Math.PI) / 180)}
             y2={radius() - (radius() - 6) * Math.cos((angle * Math.PI) / 180)}
-            stroke="rgba(255, 255, 255, 0.4)"
+            stroke={skin().ticksColor}
             stroke-width={angle % 90 === 0 ? "2.5" : "1.5"}
           />
         ))}
@@ -53,7 +56,7 @@ export const AnalogClock: Component<AnalogClockProps> = (props) => {
           y1={radius()}
           x2={radius() + (radius() - 32) * Math.sin((hourAngle() * Math.PI) / 180)}
           y2={radius() - (radius() - 32) * Math.cos((hourAngle() * Math.PI) / 180)}
-          stroke="#f8fafc"
+          stroke={skin().handHourColor}
           stroke-width="3.5"
           stroke-linecap="round"
         />
@@ -64,7 +67,7 @@ export const AnalogClock: Component<AnalogClockProps> = (props) => {
           y1={radius()}
           x2={radius() + (radius() - 20) * Math.sin((minuteAngle() * Math.PI) / 180)}
           y2={radius() - (radius() - 20) * Math.cos((minuteAngle() * Math.PI) / 180)}
-          stroke={color()}
+          stroke={skin().handMinColor}
           stroke-width="2.5"
           stroke-linecap="round"
         />
@@ -75,7 +78,7 @@ export const AnalogClock: Component<AnalogClockProps> = (props) => {
           y1={radius()}
           x2={radius() + (radius() - 12) * Math.sin((secondAngle() * Math.PI) / 180)}
           y2={radius() - (radius() - 12) * Math.cos((secondAngle() * Math.PI) / 180)}
-          stroke="#ef4444"
+          stroke={skin().handSecColor}
           stroke-width="1.5"
           stroke-linecap="round"
         />
