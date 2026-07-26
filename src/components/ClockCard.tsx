@@ -1,12 +1,12 @@
 // src/components/ClockCard.tsx
 // Fine-grained Reactive Timezone Clock Card Component for Solid.js.
-// Connects to: src/App.tsx, src/services/clockStore.ts, src/components/AnalogClock.tsx
+// Connects to: src/App.tsx, src/services/clockStore.ts, src/components/AnalogClock.tsx, src/services/themeStore.ts
 // Created: 2026-07-26
 
 import { Component, createMemo } from 'solid-js';
 import { ClockCardItem, getFormattedTimeForTimezone } from '../services/clockStore';
 import { AnalogClock } from './AnalogClock';
-import { WatchFaceSkin } from '../services/themeStore';
+import { getSkinConfig, WatchFaceSkin } from '../services/themeStore';
 
 interface ClockCardProps {
   clock: ClockCardItem;
@@ -18,13 +18,21 @@ interface ClockCardProps {
 }
 
 export const ClockCard: Component<ClockCardProps> = (props) => {
+  const skin = createMemo(() => getSkinConfig(props.skin || 'cyberpunk'));
+
   // Fine-grained reactivity: Only compute time metrics when currentTime updates
   const timeData = createMemo(() => 
     getFormattedTimeForTimezone(props.currentTime, props.clock.timezone, props.clock.is24Hour, props.clock.showSeconds)
   );
 
   return (
-    <div class="clock-card card fade-in" style={{ "border-top-color": props.clock.color }}>
+    <div 
+      class="clock-card card fade-in" 
+      style={{ 
+        background: skin().cardBg, 
+        "border-top-color": skin().cardBorder 
+      }}
+    >
       <div class="clock-card-header">
         <div class="clock-title-group">
           <h3>{props.clock.label}</h3>
@@ -75,7 +83,7 @@ export const ClockCard: Component<ClockCardProps> = (props) => {
 
         {/* Digital Time & Date */}
         <div class="digital-wrapper">
-          <div class="digital-time" style={{ color: props.clock.color }}>
+          <div class="digital-time" style={{ color: skin().digitColor }}>
             {timeData().formattedTime}
           </div>
           <div class="digital-date">

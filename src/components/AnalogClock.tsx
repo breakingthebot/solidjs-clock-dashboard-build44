@@ -19,7 +19,6 @@ export const AnalogClock: Component<AnalogClockProps> = (props) => {
   const size = () => props.size || 120;
   const radius = () => size() / 2;
   const skin = createMemo(() => getSkinConfig(props.skin || 'cyberpunk'));
-  const color = () => props.color || skin().accent;
 
   const secondAngle = () => (props.seconds / 60) * 360;
   const minuteAngle = () => ((props.minutes + props.seconds / 60) / 60) * 360;
@@ -34,8 +33,8 @@ export const AnalogClock: Component<AnalogClockProps> = (props) => {
           cy={radius()} 
           r={radius() - 4} 
           fill={skin().faceBg} 
-          stroke={color()} 
-          stroke-width="2" 
+          stroke={skin().faceBorder} 
+          stroke-width="3" 
         />
 
         {/* Hour Ticks */}
@@ -46,7 +45,7 @@ export const AnalogClock: Component<AnalogClockProps> = (props) => {
             x2={radius() + (radius() - 6) * Math.sin((angle * Math.PI) / 180)}
             y2={radius() - (radius() - 6) * Math.cos((angle * Math.PI) / 180)}
             stroke={skin().ticksColor}
-            stroke-width={angle % 90 === 0 ? "2.5" : "1.5"}
+            stroke-width={angle % 90 === 0 ? "3" : "1.5"}
           />
         ))}
 
@@ -84,7 +83,7 @@ export const AnalogClock: Component<AnalogClockProps> = (props) => {
         />
 
         {/* Center Pivot Dot */}
-        <circle cx={radius()} cy={radius()} r="4" fill={color()} />
+        <circle cx={radius()} cy={radius()} r="4" fill={skin().handMinColor} />
       </svg>
     </div>
   );

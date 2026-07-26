@@ -12,7 +12,7 @@ import { TimersWidget } from './components/TimersWidget';
 import { TimezoneConverterModal } from './components/TimezoneConverterModal';
 import { SkinSelectorModal } from './components/SkinSelectorModal';
 import { ChimeSettingsModal } from './components/ChimeSettingsModal';
-import { WatchFaceSkin } from './services/themeStore';
+import { WatchFaceSkin, getSkinConfig } from './services/themeStore';
 import { checkHourlyChimeTrigger, playWebAudioChime } from './services/chimeService';
 
 export const App: Component = () => {
@@ -39,6 +39,14 @@ export const App: Component = () => {
       e.preventDefault();
       setDeferredInstallPrompt(e);
     });
+  });
+
+  // Dynamically update document body background gradient based on active skin
+  createEffect(() => {
+    const config = getSkinConfig(activeSkin());
+    if (typeof document !== 'undefined') {
+      document.body.style.background = config.bgGrad;
+    }
   });
 
   // Track minute transitions for top-of-the-hour chime

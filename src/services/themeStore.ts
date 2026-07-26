@@ -1,6 +1,6 @@
 // src/services/themeStore.ts
 // Custom Themes & Watch Face Skin Engine for Solid.js.
-// Connects to: src/components/SkinSelectorModal.tsx, src/components/AnalogClock.tsx, src/services/themeStore.spec.ts
+// Connects to: src/components/SkinSelectorModal.tsx, src/components/AnalogClock.tsx, src/components/ClockCard.tsx
 // Created: 2026-07-26
 
 export type WatchFaceSkin = 'cyberpunk' | 'classic' | 'minimalist' | 'matrix' | 'quartz';
@@ -12,12 +12,15 @@ export interface SkinConfig {
   description: string;
   bgGrad: string;
   cardBg: string;
+  cardBorder: string;
   accent: string;
   handHourColor: string;
   handMinColor: string;
   handSecColor: string;
   faceBg: string;
+  faceBorder: string;
   ticksColor: string;
+  digitColor: string;
 }
 
 export const WATCH_SKINS: SkinConfig[] = [
@@ -28,40 +31,49 @@ export const WATCH_SKINS: SkinConfig[] = [
     description: 'Vibrant neon cyan & magenta accents with glowing hands',
     bgGrad: 'radial-gradient(circle at 50% 0%, #1e1b4b 0%, #030712 100%)',
     cardBg: 'rgba(15, 23, 42, 0.85)',
+    cardBorder: '#06b6d4',
     accent: '#06b6d4',
     handHourColor: '#f43f5e',
     handMinColor: '#06b6d4',
-    handSecColor: '#f59e0b',
-    faceBg: 'rgba(15, 23, 42, 0.9)',
-    ticksColor: '#38bdf8'
+    handSecColor: '#fbbf24',
+    faceBg: '#0f172a',
+    faceBorder: '#06b6d4',
+    ticksColor: '#38bdf8',
+    digitColor: '#06b6d4'
   },
   {
     id: 'classic',
     label: 'Classic Quartz',
     icon: '⌚',
-    description: 'Elegant monochrome watch face with silver hands',
+    description: 'Elegant porcelain white face with polished brass gold rim and black steel hands',
     bgGrad: 'radial-gradient(circle at 50% 0%, #1f2937 0%, #111827 100%)',
-    cardBg: 'rgba(31, 41, 55, 0.85)',
-    accent: '#9ca3af',
-    handHourColor: '#f3f4f6',
-    handMinColor: '#d1d5db',
-    handSecColor: '#ef4444',
-    faceBg: 'rgba(17, 24, 39, 0.9)',
-    ticksColor: '#9ca3af'
+    cardBg: 'rgba(30, 41, 59, 0.9)',
+    cardBorder: '#d97706',
+    accent: '#d97706',
+    handHourColor: '#0f172a',
+    handMinColor: '#1e293b',
+    handSecColor: '#dc2626',
+    faceBg: '#f8fafc',
+    faceBorder: '#d97706',
+    ticksColor: '#0f172a',
+    digitColor: '#fbbf24'
   },
   {
     id: 'minimalist',
     label: 'Minimalist Clean',
     icon: '✨',
-    description: 'Sleek frameless design with subtle indicator ticks',
+    description: 'Sleek frameless design with subtle white indicator ticks',
     bgGrad: 'radial-gradient(circle at 50% 0%, #0f172a 0%, #020617 100%)',
     cardBg: 'rgba(15, 23, 42, 0.6)',
+    cardBorder: '#475569',
     accent: '#38bdf8',
-    handHourColor: '#f8fafc',
-    handMinColor: '#94a3b8',
-    handSecColor: '#38bdf8',
-    faceBg: 'transparent',
-    ticksColor: 'rgba(255, 255, 255, 0.2)'
+    handHourColor: '#ffffff',
+    handMinColor: '#cbd5e1',
+    handSecColor: '#94a3b8',
+    faceBg: 'rgba(255, 255, 255, 0.05)',
+    faceBorder: '#e2e8f0',
+    ticksColor: '#ffffff',
+    digitColor: '#e2e8f0'
   },
   {
     id: 'matrix',
@@ -69,27 +81,33 @@ export const WATCH_SKINS: SkinConfig[] = [
     icon: '🟢',
     description: 'Phosphor terminal green glow with high-contrast dials',
     bgGrad: 'radial-gradient(circle at 50% 0%, #022c22 0%, #020617 100%)',
-    cardBg: 'rgba(6, 78, 59, 0.4)',
+    cardBg: 'rgba(6, 78, 59, 0.5)',
+    cardBorder: '#10b981',
     accent: '#10b981',
     handHourColor: '#34d399',
     handMinColor: '#10b981',
-    handSecColor: '#a7f3d0',
-    faceBg: 'rgba(2, 44, 34, 0.8)',
-    ticksColor: '#10b981'
+    handSecColor: '#6ee7b7',
+    faceBg: '#022c22',
+    faceBorder: '#10b981',
+    ticksColor: '#10b981',
+    digitColor: '#10b981'
   },
   {
     id: 'quartz',
     label: 'Royal Amber',
     icon: '👑',
-    description: 'Warm gold & amber quartz tones',
+    description: 'Rich warm gold & amber quartz face with golden hands',
     bgGrad: 'radial-gradient(circle at 50% 0%, #451a03 0%, #0f172a 100%)',
-    cardBg: 'rgba(120, 53, 15, 0.3)',
+    cardBg: 'rgba(120, 53, 15, 0.4)',
+    cardBorder: '#f59e0b',
     accent: '#f59e0b',
-    handHourColor: '#fbbf24',
-    handMinColor: '#f59e0b',
-    handSecColor: '#fef08a',
-    faceBg: 'rgba(69, 26, 3, 0.7)',
-    ticksColor: '#fbbf24'
+    handHourColor: '#fef08a',
+    handMinColor: '#fbbf24',
+    handSecColor: '#ffffff',
+    faceBg: '#78350f',
+    faceBorder: '#fbbf24',
+    ticksColor: '#fef08a',
+    digitColor: '#fbbf24'
   }
 ];
 
