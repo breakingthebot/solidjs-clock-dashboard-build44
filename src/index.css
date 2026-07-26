@@ -1309,6 +1309,139 @@ body {
   color: var(--text-secondary);
 }
 
+/* Global Timezone Activity Heatmap UI Styles */
+.heatmap-modal-card {
+  max-width: 920px;
+}
+
+.heatmap-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.peak-banner {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  font-size: 13px;
+}
+
+.peak-icon {
+  font-size: 20px;
+}
+
+.peak-val {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--accent-emerald);
+}
+
+.heatmap-legend {
+  display: flex;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-box {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+.legend-box.prime {
+  background: var(--accent-emerald);
+}
+
+.legend-box.extended {
+  background: var(--accent-cyan);
+}
+
+.legend-box.quiet {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+}
+
+.heatmap-table-container {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.heatmap-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  text-align: center;
+}
+
+.heatmap-table th, .heatmap-table td {
+  padding: 6px 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tz-col, .tz-cell {
+  text-align: left;
+  padding-left: 10px !important;
+  white-space: nowrap;
+  min-width: 120px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.hour-col {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.heatmap-cell {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.heatmap-cell.prime {
+  background: rgba(16, 185, 129, 0.35);
+  color: #a7f3d0;
+}
+
+.heatmap-cell.extended {
+  background: rgba(6, 182, 212, 0.2);
+  color: #67e8f9;
+}
+
+.heatmap-cell.quiet {
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--text-muted);
+}
+
+.summary-row {
+  border-top: 2px solid var(--border-color);
+  font-weight: 700;
+}
+
+.heatmap-cell.summary.prime {
+  background: var(--accent-emerald);
+  color: #030712;
+}
+
+.heatmap-cell.summary.extended {
+  background: var(--accent-cyan);
+  color: #030712;
+}
+
+
 
 
 

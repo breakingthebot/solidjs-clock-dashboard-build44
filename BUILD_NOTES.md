@@ -478,7 +478,55 @@ Created `src/services/celestialService.ts` and `src/services/celestialService.sp
    * *Interview answer*: "I built a daylight saving time (DST) shift predictor engine."
 
 ## Chosen Next Iteration
+Option 1: Global Timezone Heatmap & Activity Tracker (Iteration 11).
+
+---
+
+# Build Notes - Build 44 Iteration 11 (2026-07-26)
+
+Implemented Global Timezone Heatmap & Activity Tracker.
+
+## Summary
+Created `src/services/heatmapService.ts` and `src/services/heatmapService.spec.ts` evaluating 24 UTC hour availability matrix (`calculateTimezoneHeatmap`) across all active timezone clocks. Built `src/components/HeatmapTrackerModal.tsx` modal dialog rendering a 24-hour horizontal color-coded grid table (Prime Working `9-17`, Extended `7-21`, Quiet Off-Hours) and Peak Overlap Summary Banner (`bestPeakHourUtc`). Integrated `📊 Activity Heatmap` header button in `src/App.tsx`.
+
+## File-by-File Explanation
+- `src/services/heatmapService.ts`: 24-hour activity heatmap matrix calculator identifying peak overlap windows across active timezone clocks.
+- `src/services/heatmapService.spec.ts`: Unit test suite testing 24-hour summary cell generation and working hour rating classification.
+- `src/components/HeatmapTrackerModal.tsx`: Interactive modal dialog rendering color-coded activity grid table, legend bar, and peak overlap highlight banner.
+- `src/App.tsx`: Added `📊 Activity Heatmap` top header button and embedded `HeatmapTrackerModal`.
+- `CHANGELOG.md`: Logged version 1.1.0 release notes.
+
+## Manual Test Steps
+1. Open [https://solidjs-clock-dashboard-build44.vercel.app](https://solidjs-clock-dashboard-build44.vercel.app).
+2. Click **📊 Activity Heatmap** in the top navigation header bar.
+3. Observe the 24-hour color-coded activity matrix across your active timezone clocks.
+4. Review the **Peak Global Team Overlap Window** banner for optimal team sync hours!
+
+## Candidate Next Iterations
+1. **Keyboard Hotkeys & Fast Navigation Engine (Iteration 12)**
+   * *Plain English*: Press ? for hotkeys modal, Ctrl+K for timezone launcher, Ctrl+A to add clock.
+   * *Benefit*: Power-user keyboard navigation.
+   * *Interview answer*: "I added a comprehensive hotkey navigation engine for power users."
+2. **Live Timezone Weather Overlay & Local Conditions Engine (Iteration 12)**
+   * *Plain English*: Display real-time temperature, humidity, and weather icons on each timezone clock card.
+   * *Benefit*: Environmental context alongside local time.
+   * *Interview answer*: "I integrated live weather telemetry onto global timezone cards."
+3. **Timezone Grouping & Multi-Tab Workspace Vault (Iteration 12)**
+   * *Plain English*: Categorize timezone clocks into tabs (e.g., "US Team", "APAC Engineering", "EU Sales").
+   * *Benefit*: Organized workspace views for large multi-regional teams.
+   * *Interview answer*: "I built tabbed workspace grouping for global timezone clock cards."
+4. **Historical Timezone DST Change Timeline & Policy Audit (Iteration 12)**
+   * *Plain English*: View past and upcoming daylight saving time (DST) shifts for active timezones.
+   * *Benefit*: Avoid unexpected 1-hour schedule shifts.
+   * *Interview answer*: "I built a daylight saving time (DST) shift predictor engine."
+5. **iCal / Google Calendar Overlap Export Engine (Iteration 12)**
+   * *Plain English*: Generate downloadable `.ics` calendar invitation files for multi-timezone meetings.
+   * *Benefit*: Seamless calendar scheduling integration.
+   * *Interview answer*: "I built an iCal event invitation generator for timezone meeting slots."
+
+## Chosen Next Iteration
 *None selected yet.*
+
 
 
 

@@ -14,6 +14,7 @@ import { SkinSelectorModal } from './components/SkinSelectorModal';
 import { ChimeSettingsModal } from './components/ChimeSettingsModal';
 import { VaultBackupModal } from './components/VaultBackupModal';
 import { CelestialEventsModal } from './components/CelestialEventsModal';
+import { HeatmapTrackerModal } from './components/HeatmapTrackerModal';
 import { WatchFaceSkin, getSkinConfig } from './services/themeStore';
 import { checkHourlyChimeTrigger, playWebAudioChime } from './services/chimeService';
 import { DashboardVaultData } from './services/vaultBackupService';
@@ -32,6 +33,7 @@ export const App: Component = () => {
   const [isChimeModalOpen, setIsChimeModalOpen] = createSignal(false);
   const [isVaultModalOpen, setIsVaultModalOpen] = createSignal(false);
   const [isCelestialModalOpen, setIsCelestialModalOpen] = createSignal(false);
+  const [isHeatmapModalOpen, setIsHeatmapModalOpen] = createSignal(false);
   const [isHourlyChimeEnabled, setIsHourlyChimeEnabled] = createSignal(true);
   const [chimeVolume, setChimeVolume] = createSignal(0.5);
   const [isTimersVisible, setIsTimersVisible] = createSignal(true);
@@ -152,6 +154,14 @@ export const App: Component = () => {
               📱 Install App
             </button>
           </Show>
+          <button 
+            type="button" 
+            onclick={() => setIsHeatmapModalOpen(true)} 
+            class="btn btn-secondary"
+            title="View 24-hour global timezone activity heatmap and peak overlap finder"
+          >
+            📊 Activity Heatmap
+          </button>
           <button 
             type="button" 
             onclick={() => setIsCelestialModalOpen(true)} 
@@ -317,6 +327,13 @@ export const App: Component = () => {
       <CelestialEventsModal
         isOpen={isCelestialModalOpen()}
         onClose={() => setIsCelestialModalOpen(false)}
+      />
+
+      {/* Global Timezone Activity Heatmap Modal */}
+      <HeatmapTrackerModal
+        isOpen={isHeatmapModalOpen()}
+        onClose={() => setIsHeatmapModalOpen(false)}
+        timezones={activeTimezones()}
       />
     </main>
   );

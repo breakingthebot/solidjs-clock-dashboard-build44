@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-07-26
+
+### Added
+- Integrated **Global Timezone Heatmap & Activity Tracker** in `src/services/heatmapService.ts`, `src/components/HeatmapTrackerModal.tsx`, and `src/App.tsx`.
+- Added 24-hour UTC activity matrix calculator (`calculateTimezoneHeatmap`) evaluating team working availability (Prime `9-17`, Extended `7-21`, Quiet Off-Hours).
+- Added Peak Overlap Summary Banner identifying optimal global team sync window.
+- Added `📊 Activity Heatmap` top header action button.
+- Added unit test suite in `src/services/heatmapService.spec.ts`.
+
 ## [1.0.0] - 2026-07-26
 
 ### Added
