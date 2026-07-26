@@ -140,6 +140,55 @@ Created `src/services/meetingSchedulerService.ts` and `src/services/meetingSched
    * *Interview answer*: "I added Web Audio API chimes and timezone alarm notifications."
 
 ## Chosen Next Iteration
+Option 1: Countdown Timers & Multi-Lap Stopwatch Engine (Iteration 4).
+
+---
+
+# Build Notes - Build 44 Iteration 4 (2026-07-26)
+
+Implemented Countdown Timers & Multi-Lap Stopwatch Engine.
+
+## Summary
+Created `src/services/timerStore.ts` and `src/services/timerStore.spec.ts` supporting precision stopwatch millisecond formatting (`formatElapsedMs`), countdown duration formatting (`formatCountdownSeconds`), and Pomodoro/Break presets. Built `src/components/TimersWidget.tsx` component with tabbed Stopwatch and Countdown views, split-lap recording, and alarm completion indicators. Integrated `⏱️ Timers` toggle in `src/App.tsx`.
+
+## File-by-File Explanation
+- `src/services/timerStore.ts`: Stopwatch millisecond formatter (`00:00.00`), countdown timer formatter (`hh:mm:ss`), and preset timer definitions (Pomodoro, Short Break, Long Break, Standup).
+- `src/services/timerStore.spec.ts`: Unit test suite testing millisecond formatting, countdown time formatting, and preset values.
+- `src/components/TimersWidget.tsx`: Interactive widget rendering precision stopwatch with 30ms interval ticking, lap recording matrix, and preset countdown timers.
+- `src/App.tsx`: Added `⏱️ Hide Timers / Show Timers` top header toggle and embedded `TimersWidget`.
+- `CHANGELOG.md`: Logged version 0.4.0 release notes.
+
+## Manual Test Steps
+1. Open [https://solidjs-clock-dashboard-build44.vercel.app](https://solidjs-clock-dashboard-build44.vercel.app).
+2. Click **⏱️ Precision Stopwatch** tab, then click **▶️ Start**.
+3. Click **🏁 Record Lap** to capture split and total lap times (`Lap 1: 00:03.45`, `Lap 2: 00:08.12`).
+4. Click **⏳ Countdown Timer** tab, select a preset (e.g. `🍅 Pomodoro (25m)` or `☕ Short Break (5m)`), and click **▶️ Start Timer**.
+5. Click **⏱️ Hide Timers / Show Timers** in header to collapse or expand the timers section!
+
+## Candidate Next Iterations
+1. **Timezone Converter & Date Math Calculator (Iteration 5)**
+   * *Plain English*: Interactive calculator to convert specific past or future timestamps between any global timezones.
+   * *Benefit*: Quick conversions for log analysis and event planning.
+   * *Interview answer*: "I added an interactive timezone converter for instant timestamp translation."
+2. **Custom Themes & Analog Watch Face Skin Selector (Iteration 5)**
+   * *Plain English*: Customize clock face styles (Minimalist, Cyberpunk Neon, Classic Quartz, Digital Matrix).
+   * *Benefit*: Personalized aesthetic choices for dashboard users.
+   * *Interview answer*: "I built a skin engine supporting multiple analog watch face styles."
+3. **PWA Offline Support & Desktop Widget Mode (Iteration 5)**
+   * *Plain English*: Add Web App Manifest and Service Worker for offline PWA installation and floating clock widget views.
+   * *Benefit*: Standalone app installation on desktop and mobile.
+   * *Interview answer*: "I turned the Solid.js clock dashboard into an installable PWA app package."
+4. **Audio Chime & Hourly Bell Notification Engine (Iteration 5)**
+   * *Plain English*: Play subtle Web Audio chimes on top of the hour or per-timezone alarms.
+   * *Benefit*: Auditory time awareness for global team members.
+   * *Interview answer*: "I added Web Audio API chimes and timezone alarm notifications."
+5. **CSV/JSON Timezone Configuration Vault Backup Engine (Iteration 5)**
+   * *Plain English*: Export and import custom timezone clock layouts and timer settings as JSON or CSV configuration files.
+   * *Benefit*: Portable timezone dashboard configurations across devices.
+   * *Interview answer*: "I built a layout export/import engine for custom timezone configurations."
+
+## Chosen Next Iteration
 *None selected yet.*
+
 
 

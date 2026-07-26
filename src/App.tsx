@@ -9,6 +9,7 @@ import { ClockCard } from './components/ClockCard';
 import { AddClockModal } from './components/AddClockModal';
 import { WorldMapVisualizer } from './components/WorldMapVisualizer';
 import { MeetingSchedulerModal } from './components/MeetingSchedulerModal';
+import { TimersWidget } from './components/TimersWidget';
 
 export const App: Component = () => {
   // Fine-grained reactive signal ticking every 1000ms
@@ -19,6 +20,7 @@ export const App: Component = () => {
   const [isAddModalOpen, setIsAddModalOpen] = createSignal(false);
   const [isSchedulerOpen, setIsSchedulerOpen] = createSignal(false);
   const [isMapVisible, setIsMapVisible] = createSignal(true);
+  const [isTimersVisible, setIsTimersVisible] = createSignal(true);
 
   // Master UTC time string computed reactively
   const masterUtcTime = createMemo(() => 
@@ -76,6 +78,13 @@ export const App: Component = () => {
         <div class="header-stats">
           <button 
             type="button" 
+            onclick={() => setIsTimersVisible(!isTimersVisible())} 
+            class="btn btn-secondary"
+          >
+            ⏱️ {isTimersVisible() ? 'Hide Timers' : 'Show Timers'}
+          </button>
+          <button 
+            type="button" 
             onclick={() => setIsSchedulerOpen(true)} 
             class="btn btn-secondary"
             title="Calculate overlapping meeting working hours across active timezones"
@@ -124,6 +133,11 @@ export const App: Component = () => {
           </button>
         </div>
       </section>
+
+      {/* Timers & Stopwatch Widget */}
+      {isTimersVisible() && (
+        <TimersWidget />
+      )}
 
       {/* World Map & Solar Terminator Visualizer */}
       {isMapVisible() && (

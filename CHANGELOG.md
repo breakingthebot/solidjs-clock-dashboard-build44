@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-07-26
+
+### Added
+- Integrated **Countdown Timers & Multi-Lap Stopwatch Engine** in `src/services/timerStore.ts`, `src/components/TimersWidget.tsx`, and `src/App.tsx`.
+- Added precision stopwatch millisecond formatter (`formatElapsedMs`) and multi-lap split time recorder.
+- Added countdown timer duration formatter (`formatCountdownSeconds`), completion alarm state, and preset selectors (Pomodoro 25m, Short Break 5m, Long Break 15m, Standup 10m).
+- Added `⏱️ Hide Timers / Show Timers` top header toggle button.
+- Added unit test suite in `src/services/timerStore.spec.ts`.
+
 ## [0.3.0] - 2026-07-26
 
 ### Added
