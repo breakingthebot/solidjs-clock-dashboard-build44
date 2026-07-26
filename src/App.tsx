@@ -15,9 +15,11 @@ import { ChimeSettingsModal } from './components/ChimeSettingsModal';
 import { VaultBackupModal } from './components/VaultBackupModal';
 import { CelestialEventsModal } from './components/CelestialEventsModal';
 import { HeatmapTrackerModal } from './components/HeatmapTrackerModal';
+import { HotkeysGuideModal } from './components/HotkeysGuideModal';
 import { WatchFaceSkin, getSkinConfig } from './services/themeStore';
 import { checkHourlyChimeTrigger, playWebAudioChime } from './services/chimeService';
 import { DashboardVaultData } from './services/vaultBackupService';
+import { handleGlobalKeyDown } from './services/hotkeyService';
 
 export const App: Component = () => {
   // Fine-grained reactive signal ticking every 1000ms
@@ -34,6 +36,7 @@ export const App: Component = () => {
   const [isVaultModalOpen, setIsVaultModalOpen] = createSignal(false);
   const [isCelestialModalOpen, setIsCelestialModalOpen] = createSignal(false);
   const [isHeatmapModalOpen, setIsHeatmapModalOpen] = createSignal(false);
+  const [isHotkeysGuideOpen, setIsHotkeysGuideOpen] = createSignal(false);
   const [isHourlyChimeEnabled, setIsHourlyChimeEnabled] = createSignal(true);
   const [chimeVolume, setChimeVolume] = createSignal(0.5);
   const [isTimersVisible, setIsTimersVisible] = createSignal(true);
@@ -46,6 +49,33 @@ export const App: Component = () => {
       e.preventDefault();
       setDeferredInstallPrompt(e);
     });
+
+    const keyListener = (e: KeyboardEvent) => {
+      handleGlobalKeyDown(e, {
+        toggleHotkeysGuide: () => setIsHotkeysGuideOpen(prev => !prev),
+        openAddClock: () => setIsAddModalOpen(true),
+        openSkins: () => setIsSkinModalOpen(true),
+        openScheduler: () => setIsSchedulerOpen(true),
+        openConverter: () => setIsConverterOpen(true),
+        openVault: () => setIsVaultModalOpen(true),
+        openHeatmap: () => setIsHeatmapModalOpen(true),
+        openCelestial: () => setIsCelestialModalOpen(true),
+        toggleTimers: () => setIsTimersVisible(prev => !prev),
+        closeActiveModal: () => {
+          setIsAddModalOpen(false);
+          setIsSchedulerOpen(false);
+          setIsConverterOpen(false);
+          setIsSkinModalOpen(false);
+          setIsChimeModalOpen(false);
+          setIsVaultModalOpen(false);
+          setIsCelestialModalOpen(false);
+          setIsHeatmapModalOpen(false);
+          setIsHotkeysGuideOpen(false);
+        }
+      });
+    };
+
+    window.addEventListener('keydown', keyListener);
   });
 
   // Dynamically update document body background gradient based on active skin
@@ -154,6 +184,14 @@ export const App: Component = () => {
               📱 Install App
             </button>
           </Show>
+          <button 
+            type="button" 
+            onclick={() => setIsHotkeysGuideOpen(true)} 
+            class="btn btn-secondary"
+            title="View keyboard hotkeys and power shortcuts (?)"
+          >
+            ⌨️ Hotkeys (?)
+          </button>
           <button 
             type="button" 
             onclick={() => setIsHeatmapModalOpen(true)} 
@@ -334,6 +372,12 @@ export const App: Component = () => {
         isOpen={isHeatmapModalOpen()}
         onClose={() => setIsHeatmapModalOpen(false)}
         timezones={activeTimezones()}
+      />
+
+      {/* Keyboard Hotkeys & Shortcuts Guide Modal */}
+      <HotkeysGuideModal
+        isOpen={isHotkeysGuideOpen()}
+        onClose={() => setIsHotkeysGuideOpen(false)}
       />
     </main>
   );

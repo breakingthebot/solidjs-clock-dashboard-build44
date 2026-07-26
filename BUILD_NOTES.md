@@ -525,7 +525,55 @@ Created `src/services/heatmapService.ts` and `src/services/heatmapService.spec.t
    * *Interview answer*: "I built an iCal event invitation generator for timezone meeting slots."
 
 ## Chosen Next Iteration
+Option 1: Keyboard Hotkeys & Fast Navigation Engine (Iteration 12).
+
+---
+
+# Build Notes - Build 44 Iteration 12 (2026-07-26)
+
+Implemented Keyboard Hotkeys & Fast Navigation Engine.
+
+## Summary
+Created `src/services/hotkeyService.ts` and `src/services/hotkeyService.spec.ts` managing global keyboard event listeners (`handleGlobalKeyDown`) and power-user navigation shortcuts (`?`, `Shift+A`, `Shift+S`, `Shift+P`, `Shift+C`, `Shift+B`, `Shift+H`, `Shift+L`, `Shift+T`, `Esc`). Built `src/components/HotkeysGuideModal.tsx` modal dialog displaying keyboard shortcut badges. Integrated global keydown listener and `⌨️ Hotkeys (?)` header button in `src/App.tsx`.
+
+## File-by-File Explanation
+- `src/services/hotkeyService.ts`: Keyboard event listener dispatcher matching key combinations to dashboard modal and widget actions while preventing trigger inside text inputs.
+- `src/services/hotkeyService.spec.ts`: Unit test suite testing hotkey action triggering and form input exclusion.
+- `src/components/HotkeysGuideModal.tsx`: Interactive modal dialog displaying keyboard shortcuts guide.
+- `src/App.tsx`: Registered global keydown listener and added `⌨️ Hotkeys (?)` top header button.
+- `CHANGELOG.md`: Logged version 1.2.0 release notes.
+
+## Manual Test Steps
+1. Open [https://solidjs-clock-dashboard-build44.vercel.app](https://solidjs-clock-dashboard-build44.vercel.app).
+2. Press **?** on your keyboard to open the Keyboard Shortcuts Guide Modal!
+3. Press **Shift + A** to instantly open the Add Timezone Clock modal.
+4. Press **Esc** to close active modal dialogs!
+
+## Candidate Next Iterations
+1. **Live Timezone Weather Overlay & Local Conditions Engine (Iteration 13)**
+   * *Plain English*: Display real-time temperature, humidity, and weather icons on each timezone clock card.
+   * *Benefit*: Environmental context alongside local time.
+   * *Interview answer*: "I integrated live weather telemetry onto global timezone cards."
+2. **Timezone Grouping & Multi-Tab Workspace Vault (Iteration 13)**
+   * *Plain English*: Categorize timezone clocks into tabs (e.g., "US Team", "APAC Engineering", "EU Sales").
+   * *Benefit*: Organized workspace views for large multi-regional teams.
+   * *Interview answer*: "I built tabbed workspace grouping for global timezone clock cards."
+3. **Historical Timezone DST Change Timeline & Policy Audit (Iteration 13)**
+   * *Plain English*: View past and upcoming daylight saving time (DST) shifts for active timezones.
+   * *Benefit*: Avoid unexpected 1-hour schedule shifts.
+   * *Interview answer*: "I built a daylight saving time (DST) shift predictor engine."
+4. **iCal / Google Calendar Overlap Export Engine (Iteration 13)**
+   * *Plain English*: Generate downloadable `.ics` calendar invitation files for multi-timezone meetings.
+   * *Benefit*: Seamless calendar scheduling integration.
+   * *Interview answer*: "I built an iCal event invitation generator for timezone meeting slots."
+5. **Timezone Audio Pronunciation & Local Language Voice Synthesizer (Iteration 13)**
+   * *Plain English*: Listen to native language time greetings (e.g., "Ohayo gozaimasu" for Tokyo).
+   * *Benefit*: Cultural awareness and engagement.
+   * *Interview answer*: "I added local language audio voice synthesizers for global timezones."
+
+## Chosen Next Iteration
 *None selected yet.*
+
 
 
 

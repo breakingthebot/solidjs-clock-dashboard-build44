@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-07-26
+
+### Added
+- Integrated **Keyboard Hotkeys & Fast Navigation Engine** in `src/services/hotkeyService.ts`, `src/components/HotkeysGuideModal.tsx`, and `src/App.tsx`.
+- Added global keyboard listener (`handleGlobalKeyDown`) supporting `?` (Guide), `Shift+A` (Add Clock), `Shift+S` (Skins), `Shift+P` (Planner), `Shift+C` (Converter), `Shift+B` (Vault Backup), `Shift+H` (Heatmap), `Shift+L` (Celestial), `Shift+T` (Timers Toggle), and `Esc` (Close Modal).
+- Added `⌨️ Hotkeys (?)` top header action button.
+- Added unit test suite in `src/services/hotkeyService.spec.ts`.
+
 ## [1.1.0] - 2026-07-26
 
 ### Added
