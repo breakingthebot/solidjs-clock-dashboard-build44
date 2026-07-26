@@ -3,7 +3,7 @@
 // Connects to: src/services/clockStore.ts, src/components/ClockCard.tsx, src/components/AddClockModal.tsx
 // Created: 2026-07-26
 
-import { Component, createSignal, For, createMemo } from 'solid-js';
+import { Component, createSignal, For, createMemo, Show } from 'solid-js';
 import { createLiveClockSignal, getDefaultClocks, ClockCardItem, getFormattedTimeForTimezone } from './services/clockStore';
 import { ClockCard } from './components/ClockCard';
 import { AddClockModal } from './components/AddClockModal';
@@ -135,14 +135,14 @@ export const App: Component = () => {
       </section>
 
       {/* Timers & Stopwatch Widget */}
-      {isTimersVisible() && (
+      <Show when={isTimersVisible()}>
         <TimersWidget />
-      )}
+      </Show>
 
       {/* World Map & Solar Terminator Visualizer */}
-      {isMapVisible() && (
+      <Show when={isMapVisible()}>
         <WorldMapVisualizer currentTime={now()} clocks={clocks()} />
-      )}
+      </Show>
 
       {/* Timezone Clocks Grid */}
       <section class="clocks-grid">

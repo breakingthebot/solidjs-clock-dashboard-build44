@@ -3,7 +3,7 @@
 // Connects to: src/App.tsx, src/services/sunCalcService.ts, src/services/clockStore.ts
 // Created: 2026-07-26
 
-import { Component, createMemo, createSignal, For } from 'solid-js';
+import { Component, createMemo, createSignal, For, Show } from 'solid-js';
 import { 
   calculateSubsolarPoint, 
   generateNightOverlaySvgPath, 
@@ -99,7 +99,7 @@ export const WorldMapVisualizer: Component<WorldMapVisualizerProps> = (props) =>
         </svg>
 
         {/* Hover Tooltip Popup */}
-        {hoveredTz() && (
+        <Show when={hoveredTz()}>
           <div 
             class="map-tooltip card"
             style={{ 
@@ -110,7 +110,7 @@ export const WorldMapVisualizer: Component<WorldMapVisualizerProps> = (props) =>
             <strong>{hoveredTz()!.name}</strong>
             <span>{hoveredTz()!.time}</span>
           </div>
-        )}
+        </Show>
       </div>
     </div>
   );
